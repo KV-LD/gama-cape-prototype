@@ -1,0 +1,240 @@
+{
+  "candidate_name": "KV",
+  "domain": "healthcare",
+  "module_id": 2,
+  "module_name": "Discovery & Stakeholder Consulting",
+  "tools": [
+    "Claude"
+  ],
+  "hyperscaler": null,
+  "problem_statement": "1. Business Context  \nMedora Community Health is a mid-size multi-clinic network facing rising no-show rates and fragmented intake across primary care, behavioral health, and specialty referrals. Leadership wants a discovery-backed product brief for an AI-assisted care-navigation experience that clinicians and front-desk staff will actually adopt, with Claude used only as a drafting and synthesis aid during discovery—not as a production runtime dependency. The FDE trainee is embedded for two weeks to turn raw stakeholder input into a decision-ready scope package the COO and CMIO can fund or kill.\n\n2. Explicit Constraints  \n- Discovery window is ten business days; no production data leaves the clinic firewall and only de-identified operational metrics or synthetic transcripts may be used.  \n- Claude may be used for interview synthesis, requirement clustering, and prioritization matrix drafting; all outputs must be human-reviewed and cite source stakeholder statements.  \n- No hyperscaler services or cloud deployment assumptions are in scope—deliverables remain vendor- and platform-agnostic documents.  \n- Final package must fit a 12-page limit (appendices excluded) suitable for an exec steering committee read-out.\n\n3. Deliverable Spec  \nSubmit a single Discovery & Framing Brief containing:  \n- Stakeholder Discovery evidence: structured discovery notes or interview records that identify at least five stakeholder roles (e.g., front-desk lead, care coordinator, CMIO, patient advocate, revenue-cycle manager), state explicit hypotheses tested with each, and show question traces that go beyond feature wish-lists to goals, constraints, and failure modes.  \n- Requirement Translation evidence: a business problem statement followed by clearly separated functional and non-functional requirements, each requirement tagged with the originating stakeholder quote or observation and traced back to the problem statement.  \n- Use-Case Prioritization evidence: a value-vs-complexity or ROI-scored prioritization artefact (table or matrix) covering the candidate use cases surfaced in discovery, with the scoring method, weights, and raw scores visible so the ranking is reproducible rather than gut-feel.  \nEvery section must be usable as direct evidence against the three skill indices above.\n\n4. One Deliberate Complication  \nMidway through the engagement the CMIO freezes any use case that touches behavioral-health notes, citing an upcoming external audit, while the COO simultaneously demands that behavioral-health no-show reduction remain the headline ROI metric in the prioritization—forcing an explicit re-scope and re-score without expanding the page limit.",
+  "generation_prompt": "You are writing a Manning liveProject-style capstone brief for an FDE trainee.\n\nTone: a real staged project brief for a working professional — not a puzzle, not an exam question, not academic homework.\n\nYou MUST use this exact section structure and no other top-level sections:\n\n1. Business Context\n   A realistic company/scenario in the given domain. 2-3 sentences.\n\n2. Explicit Constraints\n   3-4 concrete constraints (data limits, timeline, compliance, tooling).\n   Naturally reference the candidate's chosen tools and hyperscaler when provided.\n\n3. Deliverable Spec\n   Precisely what artifact(s) the candidate must produce.\n   Tie every deliverable directly to the module skill indices so the work generates evidence for EACH skill index listed.\n\n4. One Deliberate Complication\n   Exactly one realistic curveball (ambiguous requirement, conflicting stakeholder ask, or a constraint that changes partway). Not a laundry list.\n\nDo not add extra sections. Do not ask questions back. Output only the problem statement.\n\nMODULE\n- id: 2\n- name: Discovery & Stakeholder Consulting\n- phase_ref: Phase 2 - Discovery & Problem Framing\n\nSKILL INDICES (every one must be exercisable by the deliverable spec)\n- Stakeholder Discovery: Discovery notes or interview records show structured stakeholder identification and hypothesis-driven questioning, not just a captured feature wish-list.\n- Requirement Translation: Functional and non-functional requirements are explicitly separated and traced back to a business problem statement in the submitted brief.\n- Use-Case Prioritization: A value-vs-complexity or ROI-based prioritization artefact is submitted, with a visible scoring method rather than a gut-feel ranking.\n\nCANDIDATE CHOICES\n- domain: healthcare\n- AI tools used: Claude\n- hyperscaler: None (no hyperscaler required)\n",
+  "generation_model": "x-ai/grok-4.5",
+  "submission": {
+    "written": "SUBMISSION — Discovery & Framing Brief: Medora Community Health\n\n1. Stakeholder Discovery\n\nFront-desk lead: Asked \"Where do no-shows actually get created — booking, reminder, or day-of?\" → Response: most gaps trace to booking-time confusion about which clinic/provider, not reminder failures as assumed.\nCare coordinator: Asked \"What happens today when a patient misses a behavioral-health referral specifically?\" → Response: no structured follow-up exists; it relies on the coordinator remembering, which fails under caseload >40.\nCMIO: Asked \"What would make this unsafe to touch from a compliance standpoint?\" → Response: any behavioral-health note content is under heightened scrutiny ahead of an external audit; operational metadata (appointment status, not note content) is fine.\nPatient advocate: Asked \"What do patients say is the actual barrier to showing up?\" → Response: transportation and same-day rescheduling friction, more than \"forgetting.\"\nRevenue-cycle manager: Asked \"Which no-show category costs the most per incident?\" → Response: specialty referral no-shows, due to downstream billing/authorization rework.\n\n2. Requirement Translation\n\nBusiness problem: Fragmented intake and no-show handling is losing Medora both patient outcomes and referral revenue, concentrated in behavioral-health and specialty pathways.\n\nReq\tType\tStatement\tSource\nF1\tFunctional\tBooking-time clarification prompt to reduce clinic/provider mismatch\tFront-desk lead\nF2\tFunctional\tStructured follow-up trigger for missed behavioral-health referrals, using appointment-status metadata only\tCare coordinator + CMIO constraint\nF3\tFunctional\tSame-day reschedule surfacing at the point of a missed-appointment flag\tPatient advocate\nNF1\tNon-functional\tNo note-content data used for behavioral-health use cases pending audit\tCMIO\nNF2\tNon-functional\tAll outputs remain vendor-agnostic documents, no hyperscaler assumptions\tProgram constraint\n\n3. Use-Case Prioritization\n\nScored Value (1–5) and Complexity (1–5), ranked by Value/Complexity:\n\nUse Case\tValue\tComplexity\tRatio\nBooking-time clarification\t4\t2\t2.0\nSame-day reschedule surfacing\t4\t3\t1.33\nBehavioral-health follow-up (metadata-only)\t5\t3\t1.67\n\nRe-scope under the complication: Since the CMIO froze anything touching behavioral-health note content, we kept the behavioral-health use case alive by restricting it to appointment-metadata only (no note access), which satisfies the freeze while still letting the COO's headline ROI metric (behavioral-health no-show reduction) stay in scope. This keeps the ranking intact without re-deriving the weights.",
+    "code": "SUBMISSION — Discovery & Framing Brief: Medora Community Health\n\n1. Stakeholder Discovery\n\nFront-desk lead: Asked \"Where do no-shows actually get created — booking, reminder, or day-of?\" → Response: most gaps trace to booking-time confusion about which clinic/provider, not reminder failures as assumed.\nCare coordinator: Asked \"What happens today when a patient misses a behavioral-health referral specifically?\" → Response: no structured follow-up exists; it relies on the coordinator remembering, which fails under caseload >40.\nCMIO: Asked \"What would make this unsafe to touch from a compliance standpoint?\" → Response: any behavioral-health note content is under heightened scrutiny ahead of an external audit; operational metadata (appointment status, not note content) is fine.\nPatient advocate: Asked \"What do patients say is the actual barrier to showing up?\" → Response: transportation and same-day rescheduling friction, more than \"forgetting.\"\nRevenue-cycle manager: Asked \"Which no-show category costs the most per incident?\" → Response: specialty referral no-shows, due to downstream billing/authorization rework.\n\n2. Requirement Translation\n\nBusiness problem: Fragmented intake and no-show handling is losing Medora both patient outcomes and referral revenue, concentrated in behavioral-health and specialty pathways.\n\nReq\tType\tStatement\tSource\nF1\tFunctional\tBooking-time clarification prompt to reduce clinic/provider mismatch\tFront-desk lead\nF2\tFunctional\tStructured follow-up trigger for missed behavioral-health referrals, using appointment-status metadata only\tCare coordinator + CMIO constraint\nF3\tFunctional\tSame-day reschedule surfacing at the point of a missed-appointment flag\tPatient advocate\nNF1\tNon-functional\tNo note-content data used for behavioral-health use cases pending audit\tCMIO\nNF2\tNon-functional\tAll outputs remain vendor-agnostic documents, no hyperscaler assumptions\tProgram constraint\n\n3. Use-Case Prioritization\n\nScored Value (1–5) and Complexity (1–5), ranked by Value/Complexity:\n\nUse Case\tValue\tComplexity\tRatio\nBooking-time clarification\t4\t2\t2.0\nSame-day reschedule surfacing\t4\t3\t1.33\nBehavioral-health follow-up (metadata-only)\t5\t3\t1.67\n\nRe-scope under the complication: Since the CMIO froze anything touching behavioral-health note content, we kept the behavioral-health use case alive by restricting it to appointment-metadata only (no note access), which satisfies the freeze while still letting the COO's headline ROI metric (behavioral-health no-show reduction) stay in scope. This keeps the ranking intact without re-deriving the weights.END",
+    "text": "SUBMISSION — Discovery & Framing Brief: Medora Community Health\n\n1. Stakeholder Discovery\n\nFront-desk lead: Asked \"Where do no-shows actually get created — booking, reminder, or day-of?\" → Response: most gaps trace to booking-time confusion about which clinic/provider, not reminder failures as assumed.\nCare coordinator: Asked \"What happens today when a patient misses a behavioral-health referral specifically?\" → Response: no structured follow-up exists; it relies on the coordinator remembering, which fails under caseload >40.\nCMIO: Asked \"What would make this unsafe to touch from a compliance standpoint?\" → Response: any behavioral-health note content is under heightened scrutiny ahead of an external audit; operational metadata (appointment status, not note content) is fine.\nPatient advocate: Asked \"What do patients say is the actual barrier to showing up?\" → Response: transportation and same-day rescheduling friction, more than \"forgetting.\"\nRevenue-cycle manager: Asked \"Which no-show category costs the most per incident?\" → Response: specialty referral no-shows, due to downstream billing/authorization rework.\n\n2. Requirement Translation\n\nBusiness problem: Fragmented intake and no-show handling is losing Medora both patient outcomes and referral revenue, concentrated in behavioral-health and specialty pathways.\n\nReq\tType\tStatement\tSource\nF1\tFunctional\tBooking-time clarification prompt to reduce clinic/provider mismatch\tFront-desk lead\nF2\tFunctional\tStructured follow-up trigger for missed behavioral-health referrals, using appointment-status metadata only\tCare coordinator + CMIO constraint\nF3\tFunctional\tSame-day reschedule surfacing at the point of a missed-appointment flag\tPatient advocate\nNF1\tNon-functional\tNo note-content data used for behavioral-health use cases pending audit\tCMIO\nNF2\tNon-functional\tAll outputs remain vendor-agnostic documents, no hyperscaler assumptions\tProgram constraint\n\n3. Use-Case Prioritization\n\nScored Value (1–5) and Complexity (1–5), ranked by Value/Complexity:\n\nUse Case\tValue\tComplexity\tRatio\nBooking-time clarification\t4\t2\t2.0\nSame-day reschedule surfacing\t4\t3\t1.33\nBehavioral-health follow-up (metadata-only)\t5\t3\t1.67\n\nRe-scope under the complication: Since the CMIO froze anything touching behavioral-health note content, we kept the behavioral-health use case alive by restricting it to appointment-metadata only (no note access), which satisfies the freeze while still letting the COO's headline ROI metric (behavioral-health no-show reduction) stay in scope. This keeps the ranking intact without re-deriving the weights.\n\n--- CODE ---\n\nSUBMISSION — Discovery & Framing Brief: Medora Community Health\n\n1. Stakeholder Discovery\n\nFront-desk lead: Asked \"Where do no-shows actually get created — booking, reminder, or day-of?\" → Response: most gaps trace to booking-time confusion about which clinic/provider, not reminder failures as assumed.\nCare coordinator: Asked \"What happens today when a patient misses a behavioral-health referral specifically?\" → Response: no structured follow-up exists; it relies on the coordinator remembering, which fails under caseload >40.\nCMIO: Asked \"What would make this unsafe to touch from a compliance standpoint?\" → Response: any behavioral-health note content is under heightened scrutiny ahead of an external audit; operational metadata (appointment status, not note content) is fine.\nPatient advocate: Asked \"What do patients say is the actual barrier to showing up?\" → Response: transportation and same-day rescheduling friction, more than \"forgetting.\"\nRevenue-cycle manager: Asked \"Which no-show category costs the most per incident?\" → Response: specialty referral no-shows, due to downstream billing/authorization rework.\n\n2. Requirement Translation\n\nBusiness problem: Fragmented intake and no-show handling is losing Medora both patient outcomes and referral revenue, concentrated in behavioral-health and specialty pathways.\n\nReq\tType\tStatement\tSource\nF1\tFunctional\tBooking-time clarification prompt to reduce clinic/provider mismatch\tFront-desk lead\nF2\tFunctional\tStructured follow-up trigger for missed behavioral-health referrals, using appointment-status metadata only\tCare coordinator + CMIO constraint\nF3\tFunctional\tSame-day reschedule surfacing at the point of a missed-appointment flag\tPatient advocate\nNF1\tNon-functional\tNo note-content data used for behavioral-health use cases pending audit\tCMIO\nNF2\tNon-functional\tAll outputs remain vendor-agnostic documents, no hyperscaler assumptions\tProgram constraint\n\n3. Use-Case Prioritization\n\nScored Value (1–5) and Complexity (1–5), ranked by Value/Complexity:\n\nUse Case\tValue\tComplexity\tRatio\nBooking-time clarification\t4\t2\t2.0\nSame-day reschedule surfacing\t4\t3\t1.33\nBehavioral-health follow-up (metadata-only)\t5\t3\t1.67\n\nRe-scope under the complication: Since the CMIO froze anything touching behavioral-health note content, we kept the behavioral-health use case alive by restricting it to appointment-metadata only (no note access), which satisfies the freeze while still letting the COO's headline ROI metric (behavioral-health no-show reduction) stay in scope. This keeps the ranking intact without re-deriving the weights.END"
+  },
+  "defense_qa": [
+    {
+      "question": "You assigned Behavioral-health follow-up Value 5 and Booking-time clarification Value 4, and ranked by Value/Complexity ratio, yet the Revenue-cycle manager stated specialty referral no-shows cost the most per incident and no specialty use case appears in your scored table—what exact criteria produced those Value and Complexity integers, and why was specialty excluded from the scored set entirely?",
+      "answer": "ENDEND"
+    },
+    {
+      "question": "Your re-scope note keeps the metadata-only behavioral-health case alive to protect ‘the COO’s headline ROI metric,’ but Stakeholder Discovery contains no COO interview or notes—what organisational or relational signal made that COO metric binding, and how did you weigh it against the CMIO’s audit freeze beyond the one-sentence procedural fix?",
+      "answer": ""
+    },
+    {
+      "question": "The Patient advocate named transportation and same-day rescheduling friction as the actual barrier; you translated only rescheduling into F3 and omitted transportation from both the requirements table and the prioritization matrix—what unsaid or contextual read justified dropping transportation rather than treating it as a competing hypothesis about the real no-show driver?",
+      "answer": "\"Transportation was flagged by the patient advocate but I treated it as a downstream/structural barrier rather than a workflow-level one — Medora's discovery scope was framed around clinic-side intake and scheduling processes, not transportation infrastructure, which would need a different intervention entirely (rideshare partnerships, shuttle programs) outside what an FDE-scoped AI navigation tool could address in this engagement. Same-day rescheduling, by contrast, is something the booking/notification workflow can directly act on, so it mapped cleanly to a requirement."
+    }
+  ],
+  "score_sheet": {
+    "pass_a": {
+      "pass_label": "Assessor A",
+      "skill_scores": {
+        "Stakeholder Discovery": 100,
+        "Requirement Translation": 100,
+        "Use-Case Prioritization": 50
+      },
+      "vector_scores": {
+        "C": 25,
+        "V": 50
+      },
+      "evidence": {
+        "Stakeholder Discovery": "Front-desk lead: Asked \"Where do no-shows actually get created — booking, reminder, or day-of?\" → Response: most gaps trace to booking-time confusion...; Care coordinator / CMIO / Patient advocate / Revenue-cycle manager hypothesis-driven questions with recorded responses.",
+        "Requirement Translation": "Business problem: Fragmented intake and no-show handling...; table Req Type Statement Source with F1/F2/F3 Functional and NF1/NF2 Non-functional explicitly separated and source-traced.",
+        "Use-Case Prioritization": "Scored Value (1–5) and Complexity (1–5), ranked by Value/Complexity table present; defense Q on exact criteria for Value/Complexity integers and specialty exclusion (Revenue-cycle manager) unanswered/ABSENT.",
+        "C": "Transportation defense: treated as downstream/structural barrier rather than workflow-level; CMIO audit freeze noted. COO headline ROI metric binding signal ABSENT (no COO interview; defense unanswered).",
+        "V": "Business problem reframed to fragmented intake/no-show handling concentrated in behavioral-health and specialty pathways; front-desk question challenged reminder assumption; transportation dropped as outside FDE-scoped clinic-side workflow."
+      },
+      "raw": {
+        "skill_scores": {
+          "Stakeholder Discovery": 100,
+          "Requirement Translation": 100,
+          "Use-Case Prioritization": 50
+        },
+        "vector_scores": {
+          "C": 25,
+          "V": 50
+        },
+        "evidence": {
+          "Stakeholder Discovery": "Front-desk lead: Asked \"Where do no-shows actually get created — booking, reminder, or day-of?\" → Response: most gaps trace to booking-time confusion...; Care coordinator / CMIO / Patient advocate / Revenue-cycle manager hypothesis-driven questions with recorded responses.",
+          "Requirement Translation": "Business problem: Fragmented intake and no-show handling...; table Req Type Statement Source with F1/F2/F3 Functional and NF1/NF2 Non-functional explicitly separated and source-traced.",
+          "Use-Case Prioritization": "Scored Value (1–5) and Complexity (1–5), ranked by Value/Complexity table present; defense Q on exact criteria for Value/Complexity integers and specialty exclusion (Revenue-cycle manager) unanswered/ABSENT.",
+          "C": "Transportation defense: treated as downstream/structural barrier rather than workflow-level; CMIO audit freeze noted. COO headline ROI metric binding signal ABSENT (no COO interview; defense unanswered).",
+          "V": "Business problem reframed to fragmented intake/no-show handling concentrated in behavioral-health and specialty pathways; front-desk question challenged reminder assumption; transportation dropped as outside FDE-scoped clinic-side workflow."
+        }
+      }
+    },
+    "pass_b": {
+      "pass_label": "Assessor B",
+      "skill_scores": {
+        "Stakeholder Discovery": 75,
+        "Requirement Translation": 100,
+        "Use-Case Prioritization": 50
+      },
+      "vector_scores": {
+        "C": 25,
+        "V": 50
+      },
+      "evidence": {
+        "Stakeholder Discovery": "Front-desk lead: Asked 'Where do no-shows actually get created — booking, reminder, or day-of?' → Response: most gaps trace to booking-time confusion...; Care coordinator / CMIO / Patient advocate / Revenue-cycle manager hypothesis questions and responses recorded",
+        "Requirement Translation": "Business problem: Fragmented intake and no-show handling...; Req table explicitly separates F1/F2/F3 Functional vs NF1/NF2 Non-functional with Source column traced to stakeholders",
+        "Use-Case Prioritization": "Scored Value (1–5) and Complexity (1–5), ranked by Value/Complexity table present; defense answer on exact criteria for integers and specialty exclusion ABSENT (A: ENDEND)",
+        "C": "Transportation was flagged by the patient advocate but I treated it as a downstream/structural barrier rather than a workflow-level one (defense Q3); COO metric binding signal and weigh against CMIO freeze ABSENT in defense",
+        "V": "Business problem statement reframes to fragmented intake/no-show handling concentrated in behavioral-health and specialty pathways; re-scope keeps metadata-only BH case under CMIO freeze; specialty omission rationale ABSENT"
+      },
+      "raw": {
+        "skill_scores": {
+          "Stakeholder Discovery": 75,
+          "Requirement Translation": 100,
+          "Use-Case Prioritization": 50
+        },
+        "vector_scores": {
+          "C": 25,
+          "V": 50
+        },
+        "evidence": {
+          "Stakeholder Discovery": "Front-desk lead: Asked 'Where do no-shows actually get created — booking, reminder, or day-of?' → Response: most gaps trace to booking-time confusion...; Care coordinator / CMIO / Patient advocate / Revenue-cycle manager hypothesis questions and responses recorded",
+          "Requirement Translation": "Business problem: Fragmented intake and no-show handling...; Req table explicitly separates F1/F2/F3 Functional vs NF1/NF2 Non-functional with Source column traced to stakeholders",
+          "Use-Case Prioritization": "Scored Value (1–5) and Complexity (1–5), ranked by Value/Complexity table present; defense answer on exact criteria for integers and specialty exclusion ABSENT (A: ENDEND)",
+          "C": "Transportation was flagged by the patient advocate but I treated it as a downstream/structural barrier rather than a workflow-level one (defense Q3); COO metric binding signal and weigh against CMIO freeze ABSENT in defense",
+          "V": "Business problem statement reframes to fragmented intake/no-show handling concentrated in behavioral-health and specialty pathways; re-scope keeps metadata-only BH case under CMIO freeze; specialty omission rationale ABSENT"
+        }
+      }
+    },
+    "skill_final": {
+      "Stakeholder Discovery": {
+        "final": 87.5,
+        "borderline_review": false,
+        "disagreement": 25,
+        "method": "average"
+      },
+      "Requirement Translation": {
+        "final": 100.0,
+        "borderline_review": false,
+        "disagreement": 0,
+        "method": "average"
+      },
+      "Use-Case Prioritization": {
+        "final": 50.0,
+        "borderline_review": false,
+        "disagreement": 0,
+        "method": "average"
+      }
+    },
+    "vector_final": {
+      "C": {
+        "final": 25.0,
+        "borderline_review": false,
+        "disagreement": 0,
+        "method": "average"
+      },
+      "V": {
+        "final": 50.0,
+        "borderline_review": false,
+        "disagreement": 0,
+        "method": "average"
+      }
+    },
+    "borderline_flags": [],
+    "borderline_review": false,
+    "module_score": 79.17,
+    "vector_score": 37.5,
+    "final_blended_score": 62.5,
+    "floor_violation": true,
+    "verdict": "COMPLETION PASS — TRAINING RECOMMENDED, NOT EXEMPTED",
+    "blend": {
+      "module_weight": 0.6,
+      "vector_weight": 0.4,
+      "note": "Applied uniformly across all 9 modules. Final blended score = (module_score * 0.6) + (vector_score * 0.4), each already 0-100."
+    },
+    "cutoffs": {
+      "completion_pass": 50,
+      "exemption_pass": 75,
+      "exemption_floor_per_dimension": 50,
+      "note": "Applied to the FINAL BLENDED score. Exemption additionally requires no single module rubric dimension AND no single VECTOR dimension scores below the floor."
+    }
+  },
+  "pass_a": {
+    "pass_label": "Assessor A",
+    "skill_scores": {
+      "Stakeholder Discovery": 100,
+      "Requirement Translation": 100,
+      "Use-Case Prioritization": 50
+    },
+    "vector_scores": {
+      "C": 25,
+      "V": 50
+    },
+    "evidence": {
+      "Stakeholder Discovery": "Front-desk lead: Asked \"Where do no-shows actually get created — booking, reminder, or day-of?\" → Response: most gaps trace to booking-time confusion...; Care coordinator / CMIO / Patient advocate / Revenue-cycle manager hypothesis-driven questions with recorded responses.",
+      "Requirement Translation": "Business problem: Fragmented intake and no-show handling...; table Req Type Statement Source with F1/F2/F3 Functional and NF1/NF2 Non-functional explicitly separated and source-traced.",
+      "Use-Case Prioritization": "Scored Value (1–5) and Complexity (1–5), ranked by Value/Complexity table present; defense Q on exact criteria for Value/Complexity integers and specialty exclusion (Revenue-cycle manager) unanswered/ABSENT.",
+      "C": "Transportation defense: treated as downstream/structural barrier rather than workflow-level; CMIO audit freeze noted. COO headline ROI metric binding signal ABSENT (no COO interview; defense unanswered).",
+      "V": "Business problem reframed to fragmented intake/no-show handling concentrated in behavioral-health and specialty pathways; front-desk question challenged reminder assumption; transportation dropped as outside FDE-scoped clinic-side workflow."
+    },
+    "raw": {
+      "skill_scores": {
+        "Stakeholder Discovery": 100,
+        "Requirement Translation": 100,
+        "Use-Case Prioritization": 50
+      },
+      "vector_scores": {
+        "C": 25,
+        "V": 50
+      },
+      "evidence": {
+        "Stakeholder Discovery": "Front-desk lead: Asked \"Where do no-shows actually get created — booking, reminder, or day-of?\" → Response: most gaps trace to booking-time confusion...; Care coordinator / CMIO / Patient advocate / Revenue-cycle manager hypothesis-driven questions with recorded responses.",
+        "Requirement Translation": "Business problem: Fragmented intake and no-show handling...; table Req Type Statement Source with F1/F2/F3 Functional and NF1/NF2 Non-functional explicitly separated and source-traced.",
+        "Use-Case Prioritization": "Scored Value (1–5) and Complexity (1–5), ranked by Value/Complexity table present; defense Q on exact criteria for Value/Complexity integers and specialty exclusion (Revenue-cycle manager) unanswered/ABSENT.",
+        "C": "Transportation defense: treated as downstream/structural barrier rather than workflow-level; CMIO audit freeze noted. COO headline ROI metric binding signal ABSENT (no COO interview; defense unanswered).",
+        "V": "Business problem reframed to fragmented intake/no-show handling concentrated in behavioral-health and specialty pathways; front-desk question challenged reminder assumption; transportation dropped as outside FDE-scoped clinic-side workflow."
+      }
+    }
+  },
+  "pass_b": {
+    "pass_label": "Assessor B",
+    "skill_scores": {
+      "Stakeholder Discovery": 75,
+      "Requirement Translation": 100,
+      "Use-Case Prioritization": 50
+    },
+    "vector_scores": {
+      "C": 25,
+      "V": 50
+    },
+    "evidence": {
+      "Stakeholder Discovery": "Front-desk lead: Asked 'Where do no-shows actually get created — booking, reminder, or day-of?' → Response: most gaps trace to booking-time confusion...; Care coordinator / CMIO / Patient advocate / Revenue-cycle manager hypothesis questions and responses recorded",
+      "Requirement Translation": "Business problem: Fragmented intake and no-show handling...; Req table explicitly separates F1/F2/F3 Functional vs NF1/NF2 Non-functional with Source column traced to stakeholders",
+      "Use-Case Prioritization": "Scored Value (1–5) and Complexity (1–5), ranked by Value/Complexity table present; defense answer on exact criteria for integers and specialty exclusion ABSENT (A: ENDEND)",
+      "C": "Transportation was flagged by the patient advocate but I treated it as a downstream/structural barrier rather than a workflow-level one (defense Q3); COO metric binding signal and weigh against CMIO freeze ABSENT in defense",
+      "V": "Business problem statement reframes to fragmented intake/no-show handling concentrated in behavioral-health and specialty pathways; re-scope keeps metadata-only BH case under CMIO freeze; specialty omission rationale ABSENT"
+    },
+    "raw": {
+      "skill_scores": {
+        "Stakeholder Discovery": 75,
+        "Requirement Translation": 100,
+        "Use-Case Prioritization": 50
+      },
+      "vector_scores": {
+        "C": 25,
+        "V": 50
+      },
+      "evidence": {
+        "Stakeholder Discovery": "Front-desk lead: Asked 'Where do no-shows actually get created — booking, reminder, or day-of?' → Response: most gaps trace to booking-time confusion...; Care coordinator / CMIO / Patient advocate / Revenue-cycle manager hypothesis questions and responses recorded",
+        "Requirement Translation": "Business problem: Fragmented intake and no-show handling...; Req table explicitly separates F1/F2/F3 Functional vs NF1/NF2 Non-functional with Source column traced to stakeholders",
+        "Use-Case Prioritization": "Scored Value (1–5) and Complexity (1–5), ranked by Value/Complexity table present; defense answer on exact criteria for integers and specialty exclusion ABSENT (A: ENDEND)",
+        "C": "Transportation was flagged by the patient advocate but I treated it as a downstream/structural barrier rather than a workflow-level one (defense Q3); COO metric binding signal and weigh against CMIO freeze ABSENT in defense",
+        "V": "Business problem statement reframes to fragmented intake/no-show handling concentrated in behavioral-health and specialty pathways; re-scope keeps metadata-only BH case under CMIO freeze; specialty omission rationale ABSENT"
+      }
+    }
+  },
+  "verdict": "COMPLETION PASS — TRAINING RECOMMENDED, NOT EXEMPTED",
+  "github_url": "",
+  "mapped_vector_dimensions": [
+    "C",
+    "V"
+  ]
+}
