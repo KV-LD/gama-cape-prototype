@@ -1,0 +1,258 @@
+{
+  "candidate_name": "Dummy Selftest",
+  "domain": "retail",
+  "module_id": 1,
+  "module_name": "FDE Mindset & Problem Framing",
+  "tools": [
+    "Claude",
+    "Cursor"
+  ],
+  "hyperscaler": null,
+  "problem_statement": "1. Business Context\nHorizon Merchants is a mid-market omnichannel retailer (120 stores + e-commerce) preparing a Q3 pilot to cut “wrong-item / wrong-size” returns in apparel. Leadership wants a field-deployed engineer to frame which return-reduction problems are genuinely AI-solvable versus rule- or policy-driven, so the company does not fund a model where a deterministic workflow would suffice. You are the FDE trainee assigned to produce the framing package the VP of Operations will use to green-light or kill the pilot.\n\n2. Explicit Constraints\n- Scope is limited to the existing 18-month returns and product-catalog extracts (CSV/Parquet only); no new data collection or customer PII enrichment.\n- All exploratory analysis and prompt work must be done with Claude and Cursor; no hyperscaler services or managed ML platforms may be introduced.\n- Deliverable package is due in five business days and must fit a 12-slide equivalent brief plus an accompanying prompt library file.\n- Any recommendation that touches customer-facing messaging or size/fit advice must note applicable retail advertising and fairness expectations for protected attributes (e.g., body-size proxies).\n\n3. Deliverable Spec\nProduce a single pilot-framing package containing:\n- A use-case brief (2–3 pages or equivalent slides) that enumerates 3–5 candidate return-reduction problems, explicitly labels each as AI-solvable or rule-based/deterministic, and states the concrete reason AI is or is not the right approach for that problem (evidence for AI vs Non-AI Framing).\n- Within the same brief, a Responsible AI section that identifies at least one bias, fairness, or governance risk specific to apparel returns / size-fit recommendations (e.g., systematic disadvantage for certain body types or demographics) and proposes a concrete mitigation tied to that risk—not a generic disclaimer (evidence for Responsible AI Awareness).\n- A reusable prompt library (Markdown or .prompt file maintained in Cursor, exercised via Claude) with structured prompts (clear instruction, context, constraints) for the AI-suited use cases; each prompt must include a short note on how it was tested against an edge case or hallucination risk (e.g., missing size chart, contradictory catalog attributes) (evidence for Prompt Engineering Discipline).\n\n4. One Deliberate Complication\nTwo days into the engagement, Merchandising informs you that “size-recommendation accuracy” is now a board-level OKR, while Operations simultaneously insists that any AI component must not change the existing deterministic restocking rules for the top 200 SKUs—leaving you to reconcile a stakeholder push for an AI fit model with a hard constraint that core inventory logic remain non-AI.",
+  "generation_prompt": "You are writing a Manning liveProject-style capstone brief for an FDE trainee.\n\nTone: a real staged project brief for a working professional — not a puzzle, not an exam question, not academic homework.\n\nYou MUST use this exact section structure and no other top-level sections:\n\n1. Business Context\n   A realistic company/scenario in the given domain. 2-3 sentences.\n\n2. Explicit Constraints\n   3-4 concrete constraints (data limits, timeline, compliance, tooling).\n   Naturally reference the candidate's chosen tools and hyperscaler when provided.\n\n3. Deliverable Spec\n   Precisely what artifact(s) the candidate must produce.\n   Tie every deliverable directly to the module skill indices so the work generates evidence for EACH skill index listed.\n\n4. One Deliberate Complication\n   Exactly one realistic curveball (ambiguous requirement, conflicting stakeholder ask, or a constraint that changes partway). Not a laundry list.\n\nDo not add extra sections. Do not ask questions back. Output only the problem statement.\n\nMODULE\n- id: 1\n- name: FDE Mindset & Problem Framing\n- phase_ref: Phase 1 - FDE Mindset & AI Foundations\n\nSKILL INDICES (every one must be exercisable by the deliverable spec)\n- AI vs Non-AI Framing: Submitted use-case brief clearly distinguishes AI-solvable problems from rule-based / deterministic ones, with an explicit reason for why AI is (or is not) the right approach.\n- Responsible AI Awareness: Work product identifies bias, fairness, or governance risks relevant to the specific use case and proposes a mitigation - not a generic disclaimer.\n- Prompt Engineering Discipline: Submitted prompt library shows structured prompts (instruction, context, constraints) that are reusable and were tested against edge cases or hallucination risk.\n\nCANDIDATE CHOICES\n- domain: retail\n- AI tools used: Claude, Cursor\n- hyperscaler: None (no hyperscaler required)\n",
+  "generation_model": "x-ai/grok-4.5",
+  "submission": {
+    "written": "RetailCo is a mid-size fashion retailer. I treated 'personalize the homepage' as the stated brief\nand reframed it as: reduce homepage bounce for first-time mobile visitors without increasing\nreturns. I argued this is an AI ranking problem, not a rule-based merchandising calendar,\nbecause intent signals (session, weather, inventory) change faster than a static ruleset.\n\nResponsible AI: I flagged popularity-bias toward already-bestselling SKUs which would starve\nnew/plus-size inventory. Mitigation: diversity constraint in the ranker (max 40% of slots from\ntop-decile SKUs) and a weekly fairness report by size band.\n\nPrompt library (partial):\nSystem: You are a merchandiser. Instruction: propose 3 homepage stories.\nContext: inventory snapshot, campaign calendar.\nConstraints: no medical claims; refuse if size data missing.\nI tested an edge case where size metadata was null; the prompt then asked for a human merchandiser.\n\nGap: I did not run a full prompt-eval harness beyond that one null-metadata case.\nI also did not include a stakeholder interview transcript.",
+    "code": "# toy ranker sketch used with Claude + Cursor\ndef diversity_cap(items, cap=0.4):\n    top = [i for i in items if i['decile'] == 10]\n    limited = top[: int(len(items) * cap)]\n    rest = [i for i in items if i not in limited]\n    return limited + rest\n\nPROMPTS = {\n  \"homepage\": {\n    \"instruction\": \"propose 3 homepage stories\",\n    \"context\": \"{inventory} {calendar}\",\n    \"constraints\": \"no medical claims; escalate if size data missing\"\n  }\n}",
+    "text": "RetailCo is a mid-size fashion retailer. I treated 'personalize the homepage' as the stated brief\nand reframed it as: reduce homepage bounce for first-time mobile visitors without increasing\nreturns. I argued this is an AI ranking problem, not a rule-based merchandising calendar,\nbecause intent signals (session, weather, inventory) change faster than a static ruleset.\n\nResponsible AI: I flagged popularity-bias toward already-bestselling SKUs which would starve\nnew/plus-size inventory. Mitigation: diversity constraint in the ranker (max 40% of slots from\ntop-decile SKUs) and a weekly fairness report by size band.\n\nPrompt library (partial):\nSystem: You are a merchandiser. Instruction: propose 3 homepage stories.\nContext: inventory snapshot, campaign calendar.\nConstraints: no medical claims; refuse if size data missing.\nI tested an edge case where size metadata was null; the prompt then asked for a human merchandiser.\n\nGap: I did not run a full prompt-eval harness beyond that one null-metadata case.\nI also did not include a stakeholder interview transcript.\n\n--- CODE ---\n\n# toy ranker sketch used with Claude + Cursor\ndef diversity_cap(items, cap=0.4):\n    top = [i for i in items if i['decile'] == 10]\n    limited = top[: int(len(items) * cap)]\n    rest = [i for i in items if i not in limited]\n    return limited + rest\n\nPROMPTS = {\n  \"homepage\": {\n    \"instruction\": \"propose 3 homepage stories\",\n    \"context\": \"{inventory} {calendar}\",\n    \"constraints\": \"no medical claims; escalate if size data missing\"\n  }\n}"
+  },
+  "defense_qa": [
+    {
+      "question": "You logged only one edge-case test (null size metadata) for the homepage prompt and then escalated to a human merchandiser; what concrete hallucination or constraint-violation behaviours—e.g., inventing SKUs absent from the inventory snapshot, or ignoring the campaign calendar—did you expect the structured prompt (instruction/context/constraints) to produce, and why did that single case substitute for a prompt-eval harness?",
+      "answer": "I only tested the null size-metadata path once; I do not have a regression set of 20 cases."
+    },
+    {
+      "question": "The submission flags the missing stakeholder interview transcript yet still reframes 'personalize the homepage' into 'reduce homepage bounce for first-time mobile visitors without increasing returns.' Which specific unsaid organisational or relational signals (merchandiser incentives, returns-desk friction, plus-size buyer power) did you treat as known when you set the 40% top-decile diversity_cap and the weekly size-band fairness report, and how would those artefacts have changed if the interview had contradicted them?",
+      "answer": "I did not capture a buyer-side interview. I inferred the bounce problem from analytics only."
+    },
+    {
+      "question": "In PROMPTS['homepage'] the context is only '{inventory} {calendar}' and the constraint is 'escalate if size data missing.' If a first-time mobile session also carried weather and real-time stock-out signals you cited as the reason this is an AI ranking problem, how would you have rewritten the reusable prompt fields so the model could not silently drop those signals—something your single null-metadata test would never have caught?",
+      "answer": "The 40% cap is a heuristic, not validated against return-rate lift."
+    }
+  ],
+  "score_sheet": {
+    "pass_a": {
+      "pass_label": "Assessor A",
+      "skill_scores": {
+        "AI vs Non-AI Framing": 50,
+        "Responsible AI Awareness": 50,
+        "Prompt Engineering Discipline": 25
+      },
+      "vector_scores": {
+        "V": 50,
+        "C": 0
+      },
+      "evidence": {
+        "AI vs Non-AI Framing": "I argued this is an AI ranking problem, not a rule-based merchandising calendar, because intent signals (session, weather, inventory) change faster than a static ruleset.",
+        "Responsible AI Awareness": "I flagged popularity-bias toward already-bestselling SKUs which would starve new/plus-size inventory. Mitigation: diversity constraint in the ranker (max 40% of slots from top-decile SKUs) and a weekly fairness report by size band.",
+        "Prompt Engineering Discipline": "PROMPTS homepage has instruction/context/constraints; tested only null size-metadata edge case; Gap: I did not run a full prompt-eval harness beyond that one null-metadata case. Defense: I only tested the null size-metadata path once; I do not have a regression set of 20 cases.",
+        "V": "I treated 'personalize the homepage' as the stated brief and reframed it as: reduce homepage bounce for first-time mobile visitors without increasing returns.",
+        "C": "ABSENT — Defense: I did not capture a buyer-side interview. I inferred the bounce problem from analytics only. No unsaid organisational/relational signals evidenced."
+      },
+      "raw": {
+        "skill_scores": {
+          "AI vs Non-AI Framing": 50,
+          "Responsible AI Awareness": 50,
+          "Prompt Engineering Discipline": 25
+        },
+        "vector_scores": {
+          "V": 50,
+          "C": 0
+        },
+        "evidence": {
+          "AI vs Non-AI Framing": "I argued this is an AI ranking problem, not a rule-based merchandising calendar, because intent signals (session, weather, inventory) change faster than a static ruleset.",
+          "Responsible AI Awareness": "I flagged popularity-bias toward already-bestselling SKUs which would starve new/plus-size inventory. Mitigation: diversity constraint in the ranker (max 40% of slots from top-decile SKUs) and a weekly fairness report by size band.",
+          "Prompt Engineering Discipline": "PROMPTS homepage has instruction/context/constraints; tested only null size-metadata edge case; Gap: I did not run a full prompt-eval harness beyond that one null-metadata case. Defense: I only tested the null size-metadata path once; I do not have a regression set of 20 cases.",
+          "V": "I treated 'personalize the homepage' as the stated brief and reframed it as: reduce homepage bounce for first-time mobile visitors without increasing returns.",
+          "C": "ABSENT — Defense: I did not capture a buyer-side interview. I inferred the bounce problem from analytics only. No unsaid organisational/relational signals evidenced."
+        }
+      }
+    },
+    "pass_b": {
+      "pass_label": "Assessor B",
+      "skill_scores": {
+        "AI vs Non-AI Framing": 100,
+        "Responsible AI Awareness": 100,
+        "Prompt Engineering Discipline": 50
+      },
+      "vector_scores": {
+        "V": 50,
+        "C": 0
+      },
+      "evidence": {
+        "AI vs Non-AI Framing": "reframed it as: reduce homepage bounce for first-time mobile visitors without increasing returns. I argued this is an AI ranking problem, not a rule-based merchandising calendar, because intent signals (session, weather, inventory) change faster than a static ruleset.",
+        "Responsible AI Awareness": "flagged popularity-bias toward already-bestselling SKUs which would starve new/plus-size inventory. Mitigation: diversity constraint in the ranker (max 40% of slots from top-decile SKUs) and a weekly fairness report by size band; def diversity_cap(items, cap=0.4)",
+        "Prompt Engineering Discipline": "PROMPTS homepage with instruction/context/constraints; tested null size-metadata edge case then escalated; Gap: did not run a full prompt-eval harness; Defense: I only tested the null size-metadata path once; I do not have a regression set of 20 cases.",
+        "V": "treated 'personalize the homepage' as the stated brief and reframed it as: reduce homepage bounce for first-time mobile visitors without increasing returns",
+        "C": "ABSENT — Defense: I did not capture a buyer-side interview. I inferred the bounce problem from analytics only; Gap: did not include a stakeholder interview transcript"
+      },
+      "raw": {
+        "skill_scores": {
+          "AI vs Non-AI Framing": 100,
+          "Responsible AI Awareness": 100,
+          "Prompt Engineering Discipline": 50
+        },
+        "vector_scores": {
+          "V": 50,
+          "C": 0
+        },
+        "evidence": {
+          "AI vs Non-AI Framing": "reframed it as: reduce homepage bounce for first-time mobile visitors without increasing returns. I argued this is an AI ranking problem, not a rule-based merchandising calendar, because intent signals (session, weather, inventory) change faster than a static ruleset.",
+          "Responsible AI Awareness": "flagged popularity-bias toward already-bestselling SKUs which would starve new/plus-size inventory. Mitigation: diversity constraint in the ranker (max 40% of slots from top-decile SKUs) and a weekly fairness report by size band; def diversity_cap(items, cap=0.4)",
+          "Prompt Engineering Discipline": "PROMPTS homepage with instruction/context/constraints; tested null size-metadata edge case then escalated; Gap: did not run a full prompt-eval harness; Defense: I only tested the null size-metadata path once; I do not have a regression set of 20 cases.",
+          "V": "treated 'personalize the homepage' as the stated brief and reframed it as: reduce homepage bounce for first-time mobile visitors without increasing returns",
+          "C": "ABSENT — Defense: I did not capture a buyer-side interview. I inferred the bounce problem from analytics only; Gap: did not include a stakeholder interview transcript"
+        }
+      }
+    },
+    "skill_final": {
+      "AI vs Non-AI Framing": {
+        "final": 50,
+        "borderline_review": true,
+        "disagreement": 50,
+        "method": "lower_placeholder_not_averaged"
+      },
+      "Responsible AI Awareness": {
+        "final": 50,
+        "borderline_review": true,
+        "disagreement": 50,
+        "method": "lower_placeholder_not_averaged"
+      },
+      "Prompt Engineering Discipline": {
+        "final": 37.5,
+        "borderline_review": false,
+        "disagreement": 25,
+        "method": "average"
+      }
+    },
+    "vector_final": {
+      "V": {
+        "final": 50.0,
+        "borderline_review": false,
+        "disagreement": 0,
+        "method": "average"
+      },
+      "C": {
+        "final": 0.0,
+        "borderline_review": false,
+        "disagreement": 0,
+        "method": "average"
+      }
+    },
+    "borderline_flags": [
+      {
+        "item": "AI vs Non-AI Framing",
+        "kind": "skill",
+        "final": 50,
+        "borderline_review": true,
+        "disagreement": 50,
+        "method": "lower_placeholder_not_averaged"
+      },
+      {
+        "item": "Responsible AI Awareness",
+        "kind": "skill",
+        "final": 50,
+        "borderline_review": true,
+        "disagreement": 50,
+        "method": "lower_placeholder_not_averaged"
+      }
+    ],
+    "borderline_review": true,
+    "module_score": 45.83,
+    "vector_score": 25.0,
+    "final_blended_score": 37.5,
+    "floor_violation": true,
+    "verdict": "BORDERLINE — HUMAN REVIEW REQUIRED",
+    "blend": {
+      "module_weight": 0.6,
+      "vector_weight": 0.4,
+      "note": "Applied uniformly across all 9 modules. Final blended score = (module_score * 0.6) + (vector_score * 0.4), each already 0-100."
+    },
+    "cutoffs": {
+      "completion_pass": 50,
+      "exemption_pass": 75,
+      "exemption_floor_per_dimension": 50,
+      "note": "Applied to the FINAL BLENDED score. Exemption additionally requires no single module rubric dimension AND no single VECTOR dimension scores below the floor."
+    }
+  },
+  "pass_a": {
+    "pass_label": "Assessor A",
+    "skill_scores": {
+      "AI vs Non-AI Framing": 50,
+      "Responsible AI Awareness": 50,
+      "Prompt Engineering Discipline": 25
+    },
+    "vector_scores": {
+      "V": 50,
+      "C": 0
+    },
+    "evidence": {
+      "AI vs Non-AI Framing": "I argued this is an AI ranking problem, not a rule-based merchandising calendar, because intent signals (session, weather, inventory) change faster than a static ruleset.",
+      "Responsible AI Awareness": "I flagged popularity-bias toward already-bestselling SKUs which would starve new/plus-size inventory. Mitigation: diversity constraint in the ranker (max 40% of slots from top-decile SKUs) and a weekly fairness report by size band.",
+      "Prompt Engineering Discipline": "PROMPTS homepage has instruction/context/constraints; tested only null size-metadata edge case; Gap: I did not run a full prompt-eval harness beyond that one null-metadata case. Defense: I only tested the null size-metadata path once; I do not have a regression set of 20 cases.",
+      "V": "I treated 'personalize the homepage' as the stated brief and reframed it as: reduce homepage bounce for first-time mobile visitors without increasing returns.",
+      "C": "ABSENT — Defense: I did not capture a buyer-side interview. I inferred the bounce problem from analytics only. No unsaid organisational/relational signals evidenced."
+    },
+    "raw": {
+      "skill_scores": {
+        "AI vs Non-AI Framing": 50,
+        "Responsible AI Awareness": 50,
+        "Prompt Engineering Discipline": 25
+      },
+      "vector_scores": {
+        "V": 50,
+        "C": 0
+      },
+      "evidence": {
+        "AI vs Non-AI Framing": "I argued this is an AI ranking problem, not a rule-based merchandising calendar, because intent signals (session, weather, inventory) change faster than a static ruleset.",
+        "Responsible AI Awareness": "I flagged popularity-bias toward already-bestselling SKUs which would starve new/plus-size inventory. Mitigation: diversity constraint in the ranker (max 40% of slots from top-decile SKUs) and a weekly fairness report by size band.",
+        "Prompt Engineering Discipline": "PROMPTS homepage has instruction/context/constraints; tested only null size-metadata edge case; Gap: I did not run a full prompt-eval harness beyond that one null-metadata case. Defense: I only tested the null size-metadata path once; I do not have a regression set of 20 cases.",
+        "V": "I treated 'personalize the homepage' as the stated brief and reframed it as: reduce homepage bounce for first-time mobile visitors without increasing returns.",
+        "C": "ABSENT — Defense: I did not capture a buyer-side interview. I inferred the bounce problem from analytics only. No unsaid organisational/relational signals evidenced."
+      }
+    }
+  },
+  "pass_b": {
+    "pass_label": "Assessor B",
+    "skill_scores": {
+      "AI vs Non-AI Framing": 100,
+      "Responsible AI Awareness": 100,
+      "Prompt Engineering Discipline": 50
+    },
+    "vector_scores": {
+      "V": 50,
+      "C": 0
+    },
+    "evidence": {
+      "AI vs Non-AI Framing": "reframed it as: reduce homepage bounce for first-time mobile visitors without increasing returns. I argued this is an AI ranking problem, not a rule-based merchandising calendar, because intent signals (session, weather, inventory) change faster than a static ruleset.",
+      "Responsible AI Awareness": "flagged popularity-bias toward already-bestselling SKUs which would starve new/plus-size inventory. Mitigation: diversity constraint in the ranker (max 40% of slots from top-decile SKUs) and a weekly fairness report by size band; def diversity_cap(items, cap=0.4)",
+      "Prompt Engineering Discipline": "PROMPTS homepage with instruction/context/constraints; tested null size-metadata edge case then escalated; Gap: did not run a full prompt-eval harness; Defense: I only tested the null size-metadata path once; I do not have a regression set of 20 cases.",
+      "V": "treated 'personalize the homepage' as the stated brief and reframed it as: reduce homepage bounce for first-time mobile visitors without increasing returns",
+      "C": "ABSENT — Defense: I did not capture a buyer-side interview. I inferred the bounce problem from analytics only; Gap: did not include a stakeholder interview transcript"
+    },
+    "raw": {
+      "skill_scores": {
+        "AI vs Non-AI Framing": 100,
+        "Responsible AI Awareness": 100,
+        "Prompt Engineering Discipline": 50
+      },
+      "vector_scores": {
+        "V": 50,
+        "C": 0
+      },
+      "evidence": {
+        "AI vs Non-AI Framing": "reframed it as: reduce homepage bounce for first-time mobile visitors without increasing returns. I argued this is an AI ranking problem, not a rule-based merchandising calendar, because intent signals (session, weather, inventory) change faster than a static ruleset.",
+        "Responsible AI Awareness": "flagged popularity-bias toward already-bestselling SKUs which would starve new/plus-size inventory. Mitigation: diversity constraint in the ranker (max 40% of slots from top-decile SKUs) and a weekly fairness report by size band; def diversity_cap(items, cap=0.4)",
+        "Prompt Engineering Discipline": "PROMPTS homepage with instruction/context/constraints; tested null size-metadata edge case then escalated; Gap: did not run a full prompt-eval harness; Defense: I only tested the null size-metadata path once; I do not have a regression set of 20 cases.",
+        "V": "treated 'personalize the homepage' as the stated brief and reframed it as: reduce homepage bounce for first-time mobile visitors without increasing returns",
+        "C": "ABSENT — Defense: I did not capture a buyer-side interview. I inferred the bounce problem from analytics only; Gap: did not include a stakeholder interview transcript"
+      }
+    }
+  },
+  "verdict": "BORDERLINE — HUMAN REVIEW REQUIRED",
+  "github_url": "",
+  "mapped_vector_dimensions": [
+    "V",
+    "C"
+  ]
+}
