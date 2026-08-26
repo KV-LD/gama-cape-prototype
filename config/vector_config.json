@@ -1,0 +1,80 @@
+{
+  "framework": "VECTOR",
+  "source": "VECTOR Capability Assessment Platform PRD v1.0 (Krishnan Nilakantan / GAMA)",
+  "scoring_note": "In GAMA CAPE, VECTOR dimensions are NOT scored via the native 30-question psychometric quiz. They are scored as EVIDENCE from the same submitted work product + defense transcript already collected for the FDE module rubric, using the level descriptors below as the band definitions. Level 1-5 maps 1:1 onto the FDE scoring scale so both rubrics blend on one number line.",
+  "score_band_mapping": {
+    "1_Emerging": 0,
+    "2_Developing": 25,
+    "3_Established": 50,
+    "4_Advanced": 75,
+    "5_Defining": 100
+  },
+  "dimensions": {
+    "V": {
+      "name": "Vision Clarity",
+      "definition": "Defining the right problem before AI engages — distinguishing the stated brief from the actual question that needs answering.",
+      "levels": {
+        "1": "Works on the problem as stated without questioning it — output is only as good as the brief received, so someone else needs to check the framing before real work begins.",
+        "2": "Occasionally pauses to question whether the brief is right before starting — ready for moderately open-ended work, but still needs a second opinion before anything with real stakes goes ahead.",
+        "3": "Reliably reframes the real problem before engaging AI, and that reframing visibly changes the quality of what comes back — trusted to take an ambiguous brief and turn it into the right piece of work without supervision.",
+        "4": "Spots when others are about to solve the wrong problem and helps them reframe it first — the person colleagues bring a brief to specifically to get the framing right.",
+        "5": "Has changed how their organisation frames problems before any work begins — their instinct for finding the real question has become the standard others are taught to follow."
+      }
+    },
+    "E": {
+      "name": "Edge Judgment",
+      "definition": "Making confident, reasoned decisions in situations of genuine ambiguity that AI cannot resolve — and owning the consequence.",
+      "levels": {
+        "1": "Defers to whatever AI suggests or hands an unclear decision to someone senior — not yet ready to own a genuinely ambiguous call on their own.",
+        "2": "Will push back on an AI suggestion and try again before escalating — ready for moderate ambiguity, but still needs backup on anything truly high-stakes.",
+        "3": "Makes real decisions under genuine uncertainty, can explain the reasoning clearly afterward, and owns the outcome — trusted to handle consequential, ambiguous situations without someone double-checking the call.",
+        "4": "Is the person colleagues bring their hardest calls to, because their judgment in messy situations is consistently sound — trusted with the decisions that have no clean answer.",
+        "5": "Has a track record of judgment under pressure that others actively study — trusted to make calls that shape how the organisation itself decides under uncertainty."
+      }
+    },
+    "C": {
+      "name": "Context Fluency",
+      "definition": "Reading the organisational and relational signals AI cannot sense — what is felt and unsaid in a room or relationship.",
+      "levels": {
+        "1": "Notices what is said and the agenda, but mostly misses tone shifts, silence, and tension beneath the surface — not yet someone you would rely on to read a sensitive room.",
+        "2": "Picks up on obvious signals — visible frustration, clear disengagement — but does not yet have a habit of looking for the subtler ones, so their read of a room is only sometimes reliable.",
+        "3": "Reliably notices shifts in mood, engagement, and unspoken tension, and consistently acts on what they notice — trusted to read a room accurately and respond to it without being told to.",
+        "4": "Sees things in a room that most people miss entirely, and acts on those observations in ways that change outcomes — the person you want in the room specifically because of what they will catch.",
+        "5": "Their read of a situation is trusted enough to shape major decisions — people specifically seek their observation before finalising something important, because their pattern-reading has consistently proven right."
+      }
+    },
+    "T": {
+      "name": "Trust Architecture",
+      "definition": "Building and deliberately protecting human trust in AI-augmented delivery — through disclosure, accountability, and consistency.",
+      "levels": {
+        "1": "Reacts to trust issues only once they have become obvious, without much thought given to disclosure or consistency beforehand — not yet someone you would hand a relationship that needs careful protecting.",
+        "2": "Notices when trust feels like it is slipping and responds, but only after the fact — ready for relationships with low stakes, but not yet ones where a misstep would be costly.",
+        "3": "Actively monitors trust in key relationships and is deliberate about how AI involvement is communicated — trusted to manage a real client or stakeholder relationship without it quietly eroding.",
+        "4": "People extend them more freedom and access over time specifically because their reliability has been consistently demonstrated — trusted with relationships that matter, including ones under real pressure.",
+        "5": "Is brought in specifically to repair relationships that have already broken down elsewhere — trusted with the hardest trust situations precisely because their track record of rebuilding it is proven."
+      }
+    },
+    "O": {
+      "name": "Orchestration Intelligence",
+      "definition": "Directing Human-AI units with precision — framing, prompting, evaluating, and iterating with deliberate intent.",
+      "levels": {
+        "1": "Mostly hands AI a task and uses whatever comes back without much evaluation — at this stage, their AI-assisted output still needs a second pair of eyes before it goes anywhere important.",
+        "2": "Has a rough plan before prompting but does not yet make it explicit or check the output systematically — ready for low-stakes AI-assisted work, with spot checks on anything that matters.",
+        "3": "Defines the real problem before engaging AI and can explain exactly why they kept, changed, or rejected what came back — trusted to direct AI on real client or business problems without someone checking the framing first.",
+        "4": "Catches subtle errors or weak reasoning in AI output that most people would miss, and can name precisely what is wrong — the person you want reviewing AI-assisted work before it reaches a client.",
+        "5": "Has shaped how their whole team works with AI — their standard for directing it well has become everyone else's standard too, and the team's output is measurably better because of it."
+      }
+    },
+    "R": {
+      "name": "Range",
+      "definition": "Operating credibly across domains beyond primary expertise, using distance between fields as a source of insight.",
+      "levels": {
+        "1": "Stays almost entirely within their main area of expertise, engaging elsewhere only when required — not yet someone whose outside perspective adds anything beyond their core lane.",
+        "2": "Is curious about other areas and dips into them sometimes, but it does not yet influence their main work — ready to be exposed to adjacent domains, but not yet to contribute meaningfully in them.",
+        "3": "Regularly and deliberately engages with domains outside their own, and the distance genuinely produces useful ideas for their main work — trusted to contribute somewhere outside their core lane and add real value, not just presence.",
+        "4": "Is specifically sought out for their outside perspective, because what they notice from outside a field is recognised as genuinely valuable to people inside it — the person worth pulling into a problem that is not theirs.",
+        "5": "Regularly produces insight by connecting fields most people assume have nothing to do with each other — trusted to see what specialists, working alone in their own domains, would never have found."
+      }
+    }
+  }
+}
