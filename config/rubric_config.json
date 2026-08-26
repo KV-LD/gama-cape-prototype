@@ -1,0 +1,171 @@
+{
+  "program": "FDE",
+  "program_name": "Forward Deployed Engineer",
+  "source": "UST FDE1000 Evaluation Rubric.xlsx + PROVE Framework",
+  "scoring_scale": {
+    "Not Evidenced": 0,
+    "Below Expectations": 25,
+    "Meets Expectations": 50,
+    "Above Average, Can Improve": 75,
+    "Complete & Clear": 100
+  },
+  "blend": {
+    "module_weight": 0.6,
+    "vector_weight": 0.4,
+    "note": "Applied uniformly across all 9 modules. Final blended score = (module_score * 0.6) + (vector_score * 0.4), each already 0-100."
+  },
+  "cutoffs": {
+    "completion_pass": 50,
+    "exemption_pass": 75,
+    "exemption_floor_per_dimension": 50,
+    "note": "Applied to the FINAL BLENDED score. Exemption additionally requires no single module rubric dimension AND no single VECTOR dimension scores below the floor."
+  },
+  "consistency_rule": {
+    "scoring_passes": 2,
+    "disagreement_threshold": 25,
+    "action_on_disagreement": "auto-flag Borderline, route to human/SME review, do not average",
+    "source": "xlsx Scoring Guide sheet calibration rule; mirrors PROVE two-assessor rule"
+  },
+  "modules": [
+    {
+      "id": 1,
+      "name": "FDE Mindset & Problem Framing",
+      "phase_ref": "Phase 1 - FDE Mindset & AI Foundations",
+      "weight_pts": 10,
+      "exemptible": false,
+      "mandatory_note": "Carried over from PROVE framework: identity-shift module, not tested in the abstract. Confirm if this should change now that scoring is evidence-based.",
+      "prerequisite": null,
+      "vector_primary": "V",
+      "vector_secondary": "C",
+      "skill_indices": [
+        {"name": "AI vs Non-AI Framing", "observable_behaviour": "Submitted use-case brief clearly distinguishes AI-solvable problems from rule-based / deterministic ones, with an explicit reason for why AI is (or is not) the right approach."},
+        {"name": "Responsible AI Awareness", "observable_behaviour": "Work product identifies bias, fairness, or governance risks relevant to the specific use case and proposes a mitigation - not a generic disclaimer."},
+        {"name": "Prompt Engineering Discipline", "observable_behaviour": "Submitted prompt library shows structured prompts (instruction, context, constraints) that are reusable and were tested against edge cases or hallucination risk."}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Discovery & Stakeholder Consulting",
+      "phase_ref": "Phase 2 - Discovery & Problem Framing",
+      "weight_pts": 12,
+      "exemptible": true,
+      "prerequisite": null,
+      "vector_primary": "C",
+      "vector_secondary": "V",
+      "skill_indices": [
+        {"name": "Stakeholder Discovery", "observable_behaviour": "Discovery notes or interview records show structured stakeholder identification and hypothesis-driven questioning, not just a captured feature wish-list."},
+        {"name": "Requirement Translation", "observable_behaviour": "Functional and non-functional requirements are explicitly separated and traced back to a business problem statement in the submitted brief."},
+        {"name": "Use-Case Prioritization", "observable_behaviour": "A value-vs-complexity or ROI-based prioritization artefact is submitted, with a visible scoring method rather than a gut-feel ranking."}
+      ]
+    },
+    {
+      "id": 3,
+      "name": "AI Solution Architecture & Design",
+      "phase_ref": "Phase 3 - Architecture & System Design",
+      "weight_pts": 15,
+      "exemptible": true,
+      "prerequisite": null,
+      "gate_for": [4, 5, 6, 7],
+      "vector_primary": "E",
+      "vector_secondary": "O",
+      "skill_indices": [
+        {"name": "Architecture Decision Framework", "observable_behaviour": "Submitted design includes a documented RAG vs fine-tuning vs agents vs ML decision, with trade-offs (cost, latency, data dependency) explicitly compared."},
+        {"name": "Enterprise Architecture Design", "observable_behaviour": "Architecture diagram shows data flow, control flow, integration points and failure-handling strategy - reviewable by a peer without a verbal walkthrough."},
+        {"name": "Security & Governance", "observable_behaviour": "Design artefact identifies PII / data-sensitivity handling, access control approach, and compliance considerations relevant to the use case."}
+      ]
+    },
+    {
+      "id": 4,
+      "name": "RAG Systems & Data Engineering",
+      "phase_ref": "Phase 4 - RAG Systems & Data Pipelines",
+      "weight_pts": 12,
+      "exemptible": true,
+      "prerequisite": 3,
+      "vector_primary": "E",
+      "vector_secondary": "O",
+      "skill_indices": [
+        {"name": "Data Pipeline Build", "observable_behaviour": "Submitted ingestion pipeline demonstrates working chunking, metadata handling and preprocessing logic on real or representative data."},
+        {"name": "RAG Retrieval Quality", "observable_behaviour": "Retrieval strategy (top-k, hybrid search, reranking) is implemented, with before/after evidence of a tuning or optimization pass."},
+        {"name": "Hallucination Mitigation", "observable_behaviour": "Submitted evaluation shows the candidate measured and reduced hallucination / incorrect-retrieval instances using a documented technique."}
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Agentic Systems & Orchestration",
+      "phase_ref": "Phase 5 - Agentic Systems & Orchestration",
+      "weight_pts": 12,
+      "exemptible": true,
+      "prerequisite": 3,
+      "vector_primary": "E",
+      "vector_secondary": "O",
+      "skill_indices": [
+        {"name": "Agent Design", "observable_behaviour": "A working multi-step agent is submitted showing task decomposition, tool usage and error recovery - not a single-shot prompt relabelled as an 'agent'."},
+        {"name": "Framework Application", "observable_behaviour": "Submitted code shows correct use of an orchestration framework (e.g. LangChain / LangGraph) for state, memory and transitions."},
+        {"name": "Multi-Agent Coordination", "observable_behaviour": "Where applicable, submitted workflow demonstrates role-based agents with a defined communication or hand-off protocol."}
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Integration, Deployment & DevOps",
+      "phase_ref": "Phase 6 - Integration & Deployment",
+      "weight_pts": 12,
+      "exemptible": true,
+      "prerequisite": 3,
+      "vector_primary": "E",
+      "vector_secondary": "O",
+      "skill_indices": [
+        {"name": "API & Service Integration", "observable_behaviour": "Submitted work shows the AI capability exposed as a service (REST/API) that integrates cleanly with an existing or mock backend system."},
+        {"name": "CI/CD & Environment Management", "observable_behaviour": "Deployment artefact (pipeline config, container setup, or documented deployment steps) shows a repeatable, versioned deployment process."},
+        {"name": "Performance & Scaling", "observable_behaviour": "Submitted analysis shows latency / throughput measurement and at least one concrete optimization (caching, batching, scaling) applied."}
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Observability, Evaluation & Reliability",
+      "phase_ref": "Phase 7 - Observability & Reliability",
+      "weight_pts": 10,
+      "exemptible": true,
+      "prerequisite": 3,
+      "vector_primary": "T",
+      "vector_secondary": "E",
+      "skill_indices": [
+        {"name": "Monitoring & Logging", "observable_behaviour": "Submitted dashboard or logs show key metrics tracked (latency, error rate, usage) with alerting or threshold logic defined."},
+        {"name": "Evaluation Framework", "observable_behaviour": "Candidate has defined and applied success metrics through an evaluation pipeline (offline or online), not ad-hoc spot checks."},
+        {"name": "Troubleshooting Evidence", "observable_behaviour": "Work product includes at least one documented root-cause diagnosis and fix for a pipeline or system failure."}
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Business Value & Stakeholder Communication",
+      "phase_ref": "Phase 8 - Value Delivery & Stakeholder Management",
+      "weight_pts": 12,
+      "exemptible": true,
+      "prerequisite": null,
+      "vector_primary": "T",
+      "vector_secondary": "C",
+      "skill_indices": [
+        {"name": "Solution Narrative", "observable_behaviour": "Submitted presentation / pitch structures the solution as a business narrative (problem -> approach -> outcome), not a feature list."},
+        {"name": "ROI / Business Case", "observable_behaviour": "A cost-benefit or ROI model is submitted with clearly stated assumptions, not just a headline savings figure."},
+        {"name": "Objection Handling", "observable_behaviour": "Recording or notes from a client-facing session (real or role-play) show the candidate handling pushback with evidence-based responses."}
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Capstone / End-to-End Delivery",
+      "phase_ref": "Phase 9 - Capstone (Discovery -> Architecture -> Implementation -> Demo)",
+      "weight_pts": 5,
+      "exemptible": false,
+      "terminal": true,
+      "mandatory_note": "Not exemptible - terminal by design, per PROVE framework. Everyone clears this regardless of exemptions earned elsewhere.",
+      "prerequisite": "all",
+      "vector_blend": "all_six",
+      "vector_blend_weights": {"V": 0.1667, "E": 0.1667, "C": 0.1667, "T": 0.1667, "O": 0.1667, "R": 0.1667},
+      "vector_blend_note": "Equal weighting across all 6 dimensions by default - flag if you want this weighted toward O/E ('the FDE spine') instead.",
+      "skill_indices": [
+        {"name": "End-to-End Coherence", "observable_behaviour": "Capstone submission shows Discovery -> Architecture -> Implementation -> Demo as one coherent, traceable thread, not disconnected artefacts."},
+        {"name": "Demo Readiness", "observable_behaviour": "The working demo runs (live or recorded) without major failure and clearly maps back to the original business problem."},
+        {"name": "Independent Ownership", "observable_behaviour": "Evidence shows the candidate drove the capstone with minimal mentor intervention, reflecting deployment-readiness."}
+      ]
+    }
+  ]
+}
