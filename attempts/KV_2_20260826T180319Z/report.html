@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CAPE Report — KV — Module 2</title>
+  <style>
+    :root {
+      --ink: #162033;
+      --muted: #5b6578;
+      --line: #d8d2c4;
+      --paper: #fbf7ef;
+      --panel: #ffffff;
+      --navy: #0f2744;
+      --gold: #b8893a;
+      --pass: #1f6b4a;
+      --fail: #9b2c2c;
+      --warn: #8a5a12;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 16px/1.55 "Source Serif 4", "Georgia", serif;
+    }
+    header.hero {
+      background: var(--navy);
+      color: #f4ead4;
+      padding: 40px 8vw 36px;
+    }
+    header.hero p.kicker {
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font: 12px/1.4 "Segoe UI", sans-serif;
+      margin: 0 0 10px;
+      color: var(--gold);
+    }
+    header.hero h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin: 0 0 8px;
+    }
+    header.hero .meta {
+      font: 14px/1.5 "Segoe UI", sans-serif;
+      opacity: 0.9;
+    }
+    main { max-width: 920px; margin: 0 auto; padding: 28px 8vw 64px; }
+    .verdict {
+      margin: -28px 0 28px;
+      padding: 18px 22px;
+      border-radius: 6px;
+      color: white;
+      font: 600 1.05rem/1.4 "Segoe UI", sans-serif;
+    }
+    .verdict-exempt { background: var(--pass); }
+    .verdict-pass { background: #2c5282; }
+    .verdict-fail { background: var(--fail); }
+    .verdict-borderline { background: var(--warn); }
+    .scores {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+    .score-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      padding: 16px 18px;
+    }
+    .score-card span {
+      display: block;
+      font: 11px/1.3 "Segoe UI", sans-serif;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .score-card strong { font-size: 1.8rem; font-weight: 600; }
+    h2 {
+      font-size: 1.25rem;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 6px;
+      margin: 36px 0 14px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--panel);
+      font: 14px/1.4 "Segoe UI", sans-serif;
+    }
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #efe8d8;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 11px;
+    }
+    td.num { text-align: right; font-variant-numeric: tabular-nums; }
+    .code {
+      display: inline-block;
+      min-width: 1.4em;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .evidence, .qa {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      padding: 14px 16px;
+      margin: 0 0 12px;
+    }
+    .evidence h3, .qa h3 { margin: 0 0 8px; font-size: 1rem; }
+    .pill {
+      display: inline-block;
+      font: 600 10px/1 "Segoe UI", sans-serif;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: #efe8d8;
+      padding: 3px 7px;
+      margin-right: 8px;
+      color: var(--navy);
+    }
+    .question { font-style: italic; }
+    .answer { white-space: pre-wrap; }
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #fff;
+      border: 1px solid var(--line);
+      padding: 16px;
+      font: 13px/1.45 "Consolas", "Menlo", monospace;
+    }
+    a { color: #1a4f86; }
+    footer {
+      margin-top: 48px;
+      color: var(--muted);
+      font: 13px/1.5 "Segoe UI", sans-serif;
+    }
+    @media (max-width: 720px) {
+      .scores { grid-template-columns: 1fr; }
+      header.hero, main { padding-left: 20px; padding-right: 20px; }
+    }
+    @media print {
+      header.hero { padding: 24px 0; background: #000; }
+      main { padding: 12px 0 0; }
+      a { color: inherit; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <p class="kicker">G.A.Menon Academy · Capability Assessment &amp; Proficiency Engine</p>
+    <h1>KV</h1>
+    <p class="meta">
+      Module 2: Discovery &amp; Stakeholder Consulting<br />
+      Domain: healthcare · Tools: Claude · Cloud: None
+      
+    </p>
+  </header>
+  <main>
+    <div class="verdict verdict-pass">Verdict: COMPLETION PASS — TRAINING RECOMMENDED, NOT EXEMPTED</div>
+    <section class="scores">
+      <div class="score-card"><span>Module score</span><strong>79.2</strong></div>
+      <div class="score-card"><span>VECTOR score</span><strong>37.5</strong></div>
+      <div class="score-card"><span>Blended (60 / 40)</span><strong>62.5</strong></div>
+    </section>
+
+    <h2>Skill indices</h2>
+    <table>
+      <thead><tr><th>Skill</th><th>A</th><th>B</th><th>Final</th><th>Gap</th><th>Human review</th></tr></thead>
+      <tbody>
+        <tr><td>Stakeholder Discovery</td><td class='num'>100</td><td class='num'>75</td><td class='num'><strong>87.5</strong></td><td class='num'>25</td><td>—</td></tr><tr><td>Requirement Translation</td><td class='num'>100</td><td class='num'>100</td><td class='num'><strong>100</strong></td><td class='num'>0</td><td>—</td></tr><tr><td>Use-Case Prioritization</td><td class='num'>50</td><td class='num'>50</td><td class='num'><strong>50</strong></td><td class='num'>0</td><td>—</td></tr>
+      </tbody>
+    </table>
+
+    <h2>VECTOR dimensions</h2>
+    <table>
+      <thead><tr><th>Dimension</th><th>A</th><th>B</th><th>Final</th><th>Gap</th><th>Human review</th></tr></thead>
+      <tbody>
+        <tr><td><span class='code'>C</span> Context Fluency</td><td class='num'>25</td><td class='num'>25</td><td class='num'><strong>25</strong></td><td class='num'>0</td><td>—</td></tr><tr><td><span class='code'>V</span> Vision Clarity</td><td class='num'>50</td><td class='num'>50</td><td class='num'><strong>50</strong></td><td class='num'>0</td><td>—</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Assessor evidence</h2>
+    <article class='evidence'><h3>Stakeholder Discovery</h3><p><span class='pill'>Assessor A</span> Front-desk lead: Asked &quot;Where do no-shows actually get created — booking, reminder, or day-of?&quot; → Response: most gaps trace to booking-time confusion...; Care coordinator / CMIO / Patient advocate / Revenue-cycle manager hypothesis-driven questions with recorded responses.</p><p><span class='pill'>Assessor B</span> Front-desk lead: Asked &#x27;Where do no-shows actually get created — booking, reminder, or day-of?&#x27; → Response: most gaps trace to booking-time confusion...; Care coordinator / CMIO / Patient advocate / Revenue-cycle manager hypothesis questions and responses recorded</p></article><article class='evidence'><h3>Requirement Translation</h3><p><span class='pill'>Assessor A</span> Business problem: Fragmented intake and no-show handling...; table Req Type Statement Source with F1/F2/F3 Functional and NF1/NF2 Non-functional explicitly separated and source-traced.</p><p><span class='pill'>Assessor B</span> Business problem: Fragmented intake and no-show handling...; Req table explicitly separates F1/F2/F3 Functional vs NF1/NF2 Non-functional with Source column traced to stakeholders</p></article><article class='evidence'><h3>Use-Case Prioritization</h3><p><span class='pill'>Assessor A</span> Scored Value (1–5) and Complexity (1–5), ranked by Value/Complexity table present; defense Q on exact criteria for Value/Complexity integers and specialty exclusion (Revenue-cycle manager) unanswered/ABSENT.</p><p><span class='pill'>Assessor B</span> Scored Value (1–5) and Complexity (1–5), ranked by Value/Complexity table present; defense answer on exact criteria for integers and specialty exclusion ABSENT (A: ENDEND)</p></article><article class='evidence'><h3>C — Context Fluency</h3><p><span class='pill'>Assessor A</span> Transportation defense: treated as downstream/structural barrier rather than workflow-level; CMIO audit freeze noted. COO headline ROI metric binding signal ABSENT (no COO interview; defense unanswered).</p><p><span class='pill'>Assessor B</span> Transportation was flagged by the patient advocate but I treated it as a downstream/structural barrier rather than a workflow-level one (defense Q3); COO metric binding signal and weigh against CMIO freeze ABSENT in defense</p></article><article class='evidence'><h3>V — Vision Clarity</h3><p><span class='pill'>Assessor A</span> Business problem reframed to fragmented intake/no-show handling concentrated in behavioral-health and specialty pathways; front-desk question challenged reminder assumption; transportation dropped as outside FDE-scoped clinic-side workflow.</p><p><span class='pill'>Assessor B</span> Business problem statement reframes to fragmented intake/no-show handling concentrated in behavioral-health and specialty pathways; re-scope keeps metadata-only BH case under CMIO freeze; specialty omission rationale ABSENT</p></article>
+
+    <h2>Capstone problem</h2>
+    <pre>1. Business Context  
+Medora Community Health is a mid-size multi-clinic network facing rising no-show rates and fragmented intake across primary care, behavioral health, and specialty referrals. Leadership wants a discovery-backed product brief for an AI-assisted care-navigation experience that clinicians and front-desk staff will actually adopt, with Claude used only as a drafting and synthesis aid during discovery—not as a production runtime dependency. The FDE trainee is embedded for two weeks to turn raw stakeholder input into a decision-ready scope package the COO and CMIO can fund or kill.
+
+2. Explicit Constraints  
+- Discovery window is ten business days; no production data leaves the clinic firewall and only de-identified operational metrics or synthetic transcripts may be used.  
+- Claude may be used for interview synthesis, requirement clustering, and prioritization matrix drafting; all outputs must be human-reviewed and cite source stakeholder statements.  
+- No hyperscaler services or cloud deployment assumptions are in scope—deliverables remain vendor- and platform-agnostic documents.  
+- Final package must fit a 12-page limit (appendices excluded) suitable for an exec steering committee read-out.
+
+3. Deliverable Spec  
+Submit a single Discovery &amp; Framing Brief containing:  
+- Stakeholder Discovery evidence: structured discovery notes or interview records that identify at least five stakeholder roles (e.g., front-desk lead, care coordinator, CMIO, patient advocate, revenue-cycle manager), state explicit hypotheses tested with each, and show question traces that go beyond feature wish-lists to goals, constraints, and failure modes.  
+- Requirement Translation evidence: a business problem statement followed by clearly separated functional and non-functional requirements, each requirement tagged with the originating stakeholder quote or observation and traced back to the problem statement.  
+- Use-Case Prioritization evidence: a value-vs-complexity or ROI-scored prioritization artefact (table or matrix) covering the candidate use cases surfaced in discovery, with the scoring method, weights, and raw scores visible so the ranking is reproducible rather than gut-feel.  
+Every section must be usable as direct evidence against the three skill indices above.
+
+4. One Deliberate Complication  
+Midway through the engagement the CMIO freezes any use case that touches behavioral-health notes, citing an upcoming external audit, while the COO simultaneously demands that behavioral-health no-show reduction remain the headline ROI metric in the prioritization—forcing an explicit re-scope and re-score without expanding the page limit.</pre>
+
+    <h2>Written submission</h2>
+    <pre>SUBMISSION — Discovery &amp; Framing Brief: Medora Community Health
+
+1. Stakeholder Discovery
+
+Front-desk lead: Asked &quot;Where do no-shows actually get created — booking, reminder, or day-of?&quot; → Response: most gaps trace to booking-time confusion about which clinic/provider, not reminder failures as assumed.
+Care coordinator: Asked &quot;What happens today when a patient misses a behavioral-health referral specifically?&quot; → Response: no structured follow-up exists; it relies on the coordinator remembering, which fails under caseload &gt;40.
+CMIO: Asked &quot;What would make this unsafe to touch from a compliance standpoint?&quot; → Response: any behavioral-health note content is under heightened scrutiny ahead of an external audit; operational metadata (appointment status, not note content) is fine.
+Patient advocate: Asked &quot;What do patients say is the actual barrier to showing up?&quot; → Response: transportation and same-day rescheduling friction, more than &quot;forgetting.&quot;
+Revenue-cycle manager: Asked &quot;Which no-show category costs the most per incident?&quot; → Response: specialty referral no-shows, due to downstream billing/authorization rework.
+
+2. Requirement Translation
+
+Business problem: Fragmented intake and no-show handling is losing Medora both patient outcomes and referral revenue, concentrated in behavioral-health and specialty pathways.
+
+Req	Type	Statement	Source
+F1	Functional	Booking-time clarification prompt to reduce clinic/provider mismatch	Front-desk lead
+F2	Functional	Structured follow-up trigger for missed behavioral-health referrals, using appointment-status metadata only	Care coordinator + CMIO constraint
+F3	Functional	Same-day reschedule surfacing at the point of a missed-appointment flag	Patient advocate
+NF1	Non-functional	No note-content data used for behavioral-health use cases pending audit	CMIO
+NF2	Non-functional	All outputs remain vendor-agnostic documents, no hyperscaler assumptions	Program constraint
+
+3. Use-Case Prioritization
+
+Scored Value (1–5) and Complexity (1–5), ranked by Value/Complexity:
+
+Use Case	Value	Complexity	Ratio
+Booking-time clarification	4	2	2.0
+Same-day reschedule surfacing	4	3	1.33
+Behavioral-health follow-up (metadata-only)	5	3	1.67
+
+Re-scope under the complication: Since the CMIO froze anything touching behavioral-health note content, we kept the behavioral-health use case alive by restricting it to appointment-metadata only (no note access), which satisfies the freeze while still letting the COO&#x27;s headline ROI metric (behavioral-health no-show reduction) stay in scope. This keeps the ranking intact without re-deriving the weights.</pre>
+
+    <h2>Code submission</h2>
+    <pre>SUBMISSION — Discovery &amp; Framing Brief: Medora Community Health
+
+1. Stakeholder Discovery
+
+Front-desk lead: Asked &quot;Where do no-shows actually get created — booking, reminder, or day-of?&quot; → Response: most gaps trace to booking-time confusion about which clinic/provider, not reminder failures as assumed.
+Care coordinator: Asked &quot;What happens today when a patient misses a behavioral-health referral specifically?&quot; → Response: no structured follow-up exists; it relies on the coordinator remembering, which fails under caseload &gt;40.
+CMIO: Asked &quot;What would make this unsafe to touch from a compliance standpoint?&quot; → Response: any behavioral-health note content is under heightened scrutiny ahead of an external audit; operational metadata (appointment status, not note content) is fine.
+Patient advocate: Asked &quot;What do patients say is the actual barrier to showing up?&quot; → Response: transportation and same-day rescheduling friction, more than &quot;forgetting.&quot;
+Revenue-cycle manager: Asked &quot;Which no-show category costs the most per incident?&quot; → Response: specialty referral no-shows, due to downstream billing/authorization rework.
+
+2. Requirement Translation
+
+Business problem: Fragmented intake and no-show handling is losing Medora both patient outcomes and referral revenue, concentrated in behavioral-health and specialty pathways.
+
+Req	Type	Statement	Source
+F1	Functional	Booking-time clarification prompt to reduce clinic/provider mismatch	Front-desk lead
+F2	Functional	Structured follow-up trigger for missed behavioral-health referrals, using appointment-status metadata only	Care coordinator + CMIO constraint
+F3	Functional	Same-day reschedule surfacing at the point of a missed-appointment flag	Patient advocate
+NF1	Non-functional	No note-content data used for behavioral-health use cases pending audit	CMIO
+NF2	Non-functional	All outputs remain vendor-agnostic documents, no hyperscaler assumptions	Program constraint
+
+3. Use-Case Prioritization
+
+Scored Value (1–5) and Complexity (1–5), ranked by Value/Complexity:
+
+Use Case	Value	Complexity	Ratio
+Booking-time clarification	4	2	2.0
+Same-day reschedule surfacing	4	3	1.33
+Behavioral-health follow-up (metadata-only)	5	3	1.67
+
+Re-scope under the complication: Since the CMIO froze anything touching behavioral-health note content, we kept the behavioral-health use case alive by restricting it to appointment-metadata only (no note access), which satisfies the freeze while still letting the COO&#x27;s headline ROI metric (behavioral-health no-show reduction) stay in scope. This keeps the ranking intact without re-deriving the weights.END</pre>
+
+    <h2>Defense</h2>
+    <article class='qa'><h3>Question 1</h3><p class='question'>You assigned Behavioral-health follow-up Value 5 and Booking-time clarification Value 4, and ranked by Value/Complexity ratio, yet the Revenue-cycle manager stated specialty referral no-shows cost the most per incident and no specialty use case appears in your scored table—what exact criteria produced those Value and Complexity integers, and why was specialty excluded from the scored set entirely?</p><p class='answer'>ENDEND</p></article><article class='qa'><h3>Question 2</h3><p class='question'>Your re-scope note keeps the metadata-only behavioral-health case alive to protect ‘the COO’s headline ROI metric,’ but Stakeholder Discovery contains no COO interview or notes—what organisational or relational signal made that COO metric binding, and how did you weigh it against the CMIO’s audit freeze beyond the one-sentence procedural fix?</p><p class='answer'>(no answer)</p></article><article class='qa'><h3>Question 3</h3><p class='question'>The Patient advocate named transportation and same-day rescheduling friction as the actual barrier; you translated only rescheduling into F3 and omitted transportation from both the requirements table and the prioritization matrix—what unsaid or contextual read justified dropping transportation rather than treating it as a competing hypothesis about the real no-show driver?</p><p class='answer'>&quot;Transportation was flagged by the patient advocate but I treated it as a downstream/structural barrier rather than a workflow-level one — Medora&#x27;s discovery scope was framed around clinic-side intake and scheduling processes, not transportation infrastructure, which would need a different intervention entirely (rideshare partnerships, shuttle programs) outside what an FDE-scoped AI navigation tool could address in this engagement. Same-day rescheduling, by contrast, is something the booking/notification workflow can directly act on, so it mapped cleanly to a requirement.</p></article>
+
+    <h2>Audit trail</h2>
+    
+    
+    <p>Generation model: x-ai/grok-4.5</p>
+  </main>
+  <footer>
+    <p>Final blended score = (module skill average × 0.6) + (VECTOR average × 0.4). Exemption requires a blended score of at least 75 and no skill or VECTOR dimension below 50. Disagreement above 25 points flags human review and keeps the lower score.</p>
+  </footer>
+</body>
+</html>

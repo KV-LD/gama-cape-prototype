@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CAPE Report — Dummy Selftest — Module 1</title>
+  <style>
+    :root {
+      --ink: #162033;
+      --muted: #5b6578;
+      --line: #d8d2c4;
+      --paper: #fbf7ef;
+      --panel: #ffffff;
+      --navy: #0f2744;
+      --gold: #b8893a;
+      --pass: #1f6b4a;
+      --fail: #9b2c2c;
+      --warn: #8a5a12;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 16px/1.55 "Source Serif 4", "Georgia", serif;
+    }
+    header.hero {
+      background: var(--navy);
+      color: #f4ead4;
+      padding: 40px 8vw 36px;
+    }
+    header.hero p.kicker {
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font: 12px/1.4 "Segoe UI", sans-serif;
+      margin: 0 0 10px;
+      color: var(--gold);
+    }
+    header.hero h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin: 0 0 8px;
+    }
+    header.hero .meta {
+      font: 14px/1.5 "Segoe UI", sans-serif;
+      opacity: 0.9;
+    }
+    main { max-width: 920px; margin: 0 auto; padding: 28px 8vw 64px; }
+    .verdict {
+      margin: -28px 0 28px;
+      padding: 18px 22px;
+      border-radius: 6px;
+      color: white;
+      font: 600 1.05rem/1.4 "Segoe UI", sans-serif;
+    }
+    .verdict-exempt { background: var(--pass); }
+    .verdict-pass { background: #2c5282; }
+    .verdict-fail { background: var(--fail); }
+    .verdict-borderline { background: var(--warn); }
+    .scores {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+    .score-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      padding: 16px 18px;
+    }
+    .score-card span {
+      display: block;
+      font: 11px/1.3 "Segoe UI", sans-serif;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .score-card strong { font-size: 1.8rem; font-weight: 600; }
+    h2 {
+      font-size: 1.25rem;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 6px;
+      margin: 36px 0 14px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--panel);
+      font: 14px/1.4 "Segoe UI", sans-serif;
+    }
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #efe8d8;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 11px;
+    }
+    td.num { text-align: right; font-variant-numeric: tabular-nums; }
+    .code {
+      display: inline-block;
+      min-width: 1.4em;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .evidence, .qa {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      padding: 14px 16px;
+      margin: 0 0 12px;
+    }
+    .evidence h3, .qa h3 { margin: 0 0 8px; font-size: 1rem; }
+    .pill {
+      display: inline-block;
+      font: 600 10px/1 "Segoe UI", sans-serif;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: #efe8d8;
+      padding: 3px 7px;
+      margin-right: 8px;
+      color: var(--navy);
+    }
+    .question { font-style: italic; }
+    .answer { white-space: pre-wrap; }
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #fff;
+      border: 1px solid var(--line);
+      padding: 16px;
+      font: 13px/1.45 "Consolas", "Menlo", monospace;
+    }
+    a { color: #1a4f86; }
+    footer {
+      margin-top: 48px;
+      color: var(--muted);
+      font: 13px/1.5 "Segoe UI", sans-serif;
+    }
+    @media (max-width: 720px) {
+      .scores { grid-template-columns: 1fr; }
+      header.hero, main { padding-left: 20px; padding-right: 20px; }
+    }
+    @media print {
+      header.hero { padding: 24px 0; background: #000; }
+      main { padding: 12px 0 0; }
+      a { color: inherit; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <p class="kicker">G.A.Menon Academy · Capability Assessment &amp; Proficiency Engine</p>
+    <h1>Dummy Selftest</h1>
+    <p class="meta">
+      Module 1: FDE Mindset &amp; Problem Framing<br />
+      Domain: retail · Tools: Claude, Cursor · Cloud: None
+      
+    </p>
+  </header>
+  <main>
+    <div class="verdict verdict-borderline">Verdict: BORDERLINE — HUMAN REVIEW REQUIRED</div>
+    <section class="scores">
+      <div class="score-card"><span>Module score</span><strong>45.8</strong></div>
+      <div class="score-card"><span>VECTOR score</span><strong>25</strong></div>
+      <div class="score-card"><span>Blended (60 / 40)</span><strong>37.5</strong></div>
+    </section>
+
+    <h2>Skill indices</h2>
+    <table>
+      <thead><tr><th>Skill</th><th>A</th><th>B</th><th>Final</th><th>Gap</th><th>Human review</th></tr></thead>
+      <tbody>
+        <tr><td>AI vs Non-AI Framing</td><td class='num'>50</td><td class='num'>100</td><td class='num'><strong>50</strong></td><td class='num'>50</td><td>Yes</td></tr><tr><td>Responsible AI Awareness</td><td class='num'>50</td><td class='num'>100</td><td class='num'><strong>50</strong></td><td class='num'>50</td><td>Yes</td></tr><tr><td>Prompt Engineering Discipline</td><td class='num'>25</td><td class='num'>50</td><td class='num'><strong>37.5</strong></td><td class='num'>25</td><td>—</td></tr>
+      </tbody>
+    </table>
+
+    <h2>VECTOR dimensions</h2>
+    <table>
+      <thead><tr><th>Dimension</th><th>A</th><th>B</th><th>Final</th><th>Gap</th><th>Human review</th></tr></thead>
+      <tbody>
+        <tr><td><span class='code'>V</span> Vision Clarity</td><td class='num'>50</td><td class='num'>50</td><td class='num'><strong>50</strong></td><td class='num'>0</td><td>—</td></tr><tr><td><span class='code'>C</span> Context Fluency</td><td class='num'>0</td><td class='num'>0</td><td class='num'><strong>0</strong></td><td class='num'>0</td><td>—</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Assessor evidence</h2>
+    <article class='evidence'><h3>AI vs Non-AI Framing</h3><p><span class='pill'>Assessor A</span> I argued this is an AI ranking problem, not a rule-based merchandising calendar, because intent signals (session, weather, inventory) change faster than a static ruleset.</p><p><span class='pill'>Assessor B</span> reframed it as: reduce homepage bounce for first-time mobile visitors without increasing returns. I argued this is an AI ranking problem, not a rule-based merchandising calendar, because intent signals (session, weather, inventory) change faster than a static ruleset.</p></article><article class='evidence'><h3>Responsible AI Awareness</h3><p><span class='pill'>Assessor A</span> I flagged popularity-bias toward already-bestselling SKUs which would starve new/plus-size inventory. Mitigation: diversity constraint in the ranker (max 40% of slots from top-decile SKUs) and a weekly fairness report by size band.</p><p><span class='pill'>Assessor B</span> flagged popularity-bias toward already-bestselling SKUs which would starve new/plus-size inventory. Mitigation: diversity constraint in the ranker (max 40% of slots from top-decile SKUs) and a weekly fairness report by size band; def diversity_cap(items, cap=0.4)</p></article><article class='evidence'><h3>Prompt Engineering Discipline</h3><p><span class='pill'>Assessor A</span> PROMPTS homepage has instruction/context/constraints; tested only null size-metadata edge case; Gap: I did not run a full prompt-eval harness beyond that one null-metadata case. Defense: I only tested the null size-metadata path once; I do not have a regression set of 20 cases.</p><p><span class='pill'>Assessor B</span> PROMPTS homepage with instruction/context/constraints; tested null size-metadata edge case then escalated; Gap: did not run a full prompt-eval harness; Defense: I only tested the null size-metadata path once; I do not have a regression set of 20 cases.</p></article><article class='evidence'><h3>V — Vision Clarity</h3><p><span class='pill'>Assessor A</span> I treated &#x27;personalize the homepage&#x27; as the stated brief and reframed it as: reduce homepage bounce for first-time mobile visitors without increasing returns.</p><p><span class='pill'>Assessor B</span> treated &#x27;personalize the homepage&#x27; as the stated brief and reframed it as: reduce homepage bounce for first-time mobile visitors without increasing returns</p></article><article class='evidence'><h3>C — Context Fluency</h3><p><span class='pill'>Assessor A</span> ABSENT — Defense: I did not capture a buyer-side interview. I inferred the bounce problem from analytics only. No unsaid organisational/relational signals evidenced.</p><p><span class='pill'>Assessor B</span> ABSENT — Defense: I did not capture a buyer-side interview. I inferred the bounce problem from analytics only; Gap: did not include a stakeholder interview transcript</p></article>
+
+    <h2>Capstone problem</h2>
+    <pre>1. Business Context
+Horizon Merchants is a mid-market omnichannel retailer (120 stores + e-commerce) preparing a Q3 pilot to cut “wrong-item / wrong-size” returns in apparel. Leadership wants a field-deployed engineer to frame which return-reduction problems are genuinely AI-solvable versus rule- or policy-driven, so the company does not fund a model where a deterministic workflow would suffice. You are the FDE trainee assigned to produce the framing package the VP of Operations will use to green-light or kill the pilot.
+
+2. Explicit Constraints
+- Scope is limited to the existing 18-month returns and product-catalog extracts (CSV/Parquet only); no new data collection or customer PII enrichment.
+- All exploratory analysis and prompt work must be done with Claude and Cursor; no hyperscaler services or managed ML platforms may be introduced.
+- Deliverable package is due in five business days and must fit a 12-slide equivalent brief plus an accompanying prompt library file.
+- Any recommendation that touches customer-facing messaging or size/fit advice must note applicable retail advertising and fairness expectations for protected attributes (e.g., body-size proxies).
+
+3. Deliverable Spec
+Produce a single pilot-framing package containing:
+- A use-case brief (2–3 pages or equivalent slides) that enumerates 3–5 candidate return-reduction problems, explicitly labels each as AI-solvable or rule-based/deterministic, and states the concrete reason AI is or is not the right approach for that problem (evidence for AI vs Non-AI Framing).
+- Within the same brief, a Responsible AI section that identifies at least one bias, fairness, or governance risk specific to apparel returns / size-fit recommendations (e.g., systematic disadvantage for certain body types or demographics) and proposes a concrete mitigation tied to that risk—not a generic disclaimer (evidence for Responsible AI Awareness).
+- A reusable prompt library (Markdown or .prompt file maintained in Cursor, exercised via Claude) with structured prompts (clear instruction, context, constraints) for the AI-suited use cases; each prompt must include a short note on how it was tested against an edge case or hallucination risk (e.g., missing size chart, contradictory catalog attributes) (evidence for Prompt Engineering Discipline).
+
+4. One Deliberate Complication
+Two days into the engagement, Merchandising informs you that “size-recommendation accuracy” is now a board-level OKR, while Operations simultaneously insists that any AI component must not change the existing deterministic restocking rules for the top 200 SKUs—leaving you to reconcile a stakeholder push for an AI fit model with a hard constraint that core inventory logic remain non-AI.</pre>
+
+    <h2>Written submission</h2>
+    <pre>RetailCo is a mid-size fashion retailer. I treated &#x27;personalize the homepage&#x27; as the stated brief
+and reframed it as: reduce homepage bounce for first-time mobile visitors without increasing
+returns. I argued this is an AI ranking problem, not a rule-based merchandising calendar,
+because intent signals (session, weather, inventory) change faster than a static ruleset.
+
+Responsible AI: I flagged popularity-bias toward already-bestselling SKUs which would starve
+new/plus-size inventory. Mitigation: diversity constraint in the ranker (max 40% of slots from
+top-decile SKUs) and a weekly fairness report by size band.
+
+Prompt library (partial):
+System: You are a merchandiser. Instruction: propose 3 homepage stories.
+Context: inventory snapshot, campaign calendar.
+Constraints: no medical claims; refuse if size data missing.
+I tested an edge case where size metadata was null; the prompt then asked for a human merchandiser.
+
+Gap: I did not run a full prompt-eval harness beyond that one null-metadata case.
+I also did not include a stakeholder interview transcript.</pre>
+
+    <h2>Code submission</h2>
+    <pre># toy ranker sketch used with Claude + Cursor
+def diversity_cap(items, cap=0.4):
+    top = [i for i in items if i[&#x27;decile&#x27;] == 10]
+    limited = top[: int(len(items) * cap)]
+    rest = [i for i in items if i not in limited]
+    return limited + rest
+
+PROMPTS = {
+  &quot;homepage&quot;: {
+    &quot;instruction&quot;: &quot;propose 3 homepage stories&quot;,
+    &quot;context&quot;: &quot;{inventory} {calendar}&quot;,
+    &quot;constraints&quot;: &quot;no medical claims; escalate if size data missing&quot;
+  }
+}</pre>
+
+    <h2>Defense</h2>
+    <article class='qa'><h3>Question 1</h3><p class='question'>You logged only one edge-case test (null size metadata) for the homepage prompt and then escalated to a human merchandiser; what concrete hallucination or constraint-violation behaviours—e.g., inventing SKUs absent from the inventory snapshot, or ignoring the campaign calendar—did you expect the structured prompt (instruction/context/constraints) to produce, and why did that single case substitute for a prompt-eval harness?</p><p class='answer'>I only tested the null size-metadata path once; I do not have a regression set of 20 cases.</p></article><article class='qa'><h3>Question 2</h3><p class='question'>The submission flags the missing stakeholder interview transcript yet still reframes &#x27;personalize the homepage&#x27; into &#x27;reduce homepage bounce for first-time mobile visitors without increasing returns.&#x27; Which specific unsaid organisational or relational signals (merchandiser incentives, returns-desk friction, plus-size buyer power) did you treat as known when you set the 40% top-decile diversity_cap and the weekly size-band fairness report, and how would those artefacts have changed if the interview had contradicted them?</p><p class='answer'>I did not capture a buyer-side interview. I inferred the bounce problem from analytics only.</p></article><article class='qa'><h3>Question 3</h3><p class='question'>In PROMPTS[&#x27;homepage&#x27;] the context is only &#x27;{inventory} {calendar}&#x27; and the constraint is &#x27;escalate if size data missing.&#x27; If a first-time mobile session also carried weather and real-time stock-out signals you cited as the reason this is an AI ranking problem, how would you have rewritten the reusable prompt fields so the model could not silently drop those signals—something your single null-metadata test would never have caught?</p><p class='answer'>The 40% cap is a heuristic, not validated against return-rate lift.</p></article>
+
+    <h2>Audit trail</h2>
+    
+    
+    <p>Generation model: x-ai/grok-4.5</p>
+  </main>
+  <footer>
+    <p>Final blended score = (module skill average × 0.6) + (VECTOR average × 0.4). Exemption requires a blended score of at least 75 and no skill or VECTOR dimension below 50. Disagreement above 25 points flags human review and keeps the lower score.</p>
+  </footer>
+</body>
+</html>
