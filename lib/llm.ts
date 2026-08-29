@@ -39,40 +39,56 @@ export async function chat(
   messages: { role: string; content: string }[],
   options?: { temperature?: number; jsonObject?: boolean; maxTokens?: number },
 ): Promise<string> {
-  const body: Record<string, unknown> = {
-    model: GROK_MODEL,
-    messages,
-    temperature: options?.temperature ?? 0.4,
-    max_tokens: options?.maxTokens ?? 4000,
-  };
-  if (options?.jsonObject) {
-    body.response_format = { type: "json_object" };
+  let maxTokens = options?.maxTokens ?? 2000;
+  let lastDetails = "";
+
+  for (let attempt = 0; attempt < 2; attempt++) {
+    const body: Record<string, unknown> = {
+      model: GROK_MODEL,
+      messages,
+      temperature: options?.temperature ?? 0.4,
+      max_tokens: maxTokens,
+    };
+    if (options?.jsonObject) {
+      body.response_format = { type: "json_object" };
+    }
+
+    const resp = await fetch(OPENROUTER_CHAT_URL, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${openrouterKey()}`,
+        "Content-Type": "application/json",
+        "User-Agent": "gama-cape-prototype",
+        "HTTP-Referer": "https://github.com/KV-LD/gama-cape-prototype",
+        "X-Title": "GAMA CAPE",
+      },
+      body: JSON.stringify(body),
+    });
+
+    if (resp.ok) {
+      const data = (await resp.json()) as {
+        choices?: { message?: { content?: string } }[];
+      };
+      const content = data.choices?.[0]?.message?.content;
+      if (typeof content !== "string") {
+        throw new Error(`Unexpected OpenRouter response: ${JSON.stringify(data).slice(0, 400)}`);
+      }
+      return content;
+    }
+
+    lastDetails = (await resp.text()).slice(0, 500);
+    if (resp.status === 402 && attempt === 0) {
+      const afforded = lastDetails.match(/can only afford (\d+)/i);
+      const cheaper = afforded ? Math.max(256, Number(afforded[1]) - 50) : Math.min(1500, maxTokens);
+      if (cheaper < maxTokens) {
+        maxTokens = cheaper;
+        continue;
+      }
+    }
+    throw new Error(`OpenRouter chat failed (HTTP ${resp.status}). Details: ${lastDetails}`);
   }
 
-  const resp = await fetch(OPENROUTER_CHAT_URL, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${openrouterKey()}`,
-      "Content-Type": "application/json",
-      "User-Agent": "gama-cape-prototype",
-      "HTTP-Referer": "https://github.com/KV-LD/gama-cape-prototype",
-      "X-Title": "GAMA CAPE",
-    },
-    body: JSON.stringify(body),
-  });
-
-  if (!resp.ok) {
-    const details = (await resp.text()).slice(0, 400);
-    throw new Error(`OpenRouter chat failed (HTTP ${resp.status}). Details: ${details}`);
-  }
-  const data = (await resp.json()) as {
-    choices?: { message?: { content?: string } }[];
-  };
-  const content = data.choices?.[0]?.message?.content;
-  if (typeof content !== "string") {
-    throw new Error(`Unexpected OpenRouter response: ${JSON.stringify(data).slice(0, 400)}`);
-  }
-  return content;
+  throw new Error(`OpenRouter chat failed. Details: ${lastDetails}`);
 }
 
 export function extractJson(text: string): Record<string, unknown> {

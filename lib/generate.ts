@@ -70,7 +70,7 @@ export async function generateCapstoneBundle(
       },
       { role: "user", content: prompt },
     ],
-    { temperature: 0.7, maxTokens: 2500 },
+    { temperature: 0.7, maxTokens: 1800 },
   );
   return {
     problem_statement: statement.trim(),

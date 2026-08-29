@@ -85,7 +85,7 @@ Return STRICT JSON only with this shape:
       },
       { role: "user", content: user },
     ],
-    { temperature: 0.35, jsonObject: true, maxTokens: 3500 },
+    { temperature: 0.35, jsonObject: true, maxTokens: 2000 },
   );
   const parsed = extractJson(raw);
   const skillScores: Record<string, number> = {};
