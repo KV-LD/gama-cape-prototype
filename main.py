@@ -10,7 +10,13 @@ from scorer import score_module
 from store import commit_attempt
 
 
-def print_score_sheet(score_sheet: dict, github_url: str, module_config: dict, vector_config: dict) -> None:
+def print_score_sheet(
+    score_sheet: dict,
+    github_url: str,
+    module_config: dict,
+    vector_config: dict,
+    html_report_url: str = "",
+) -> None:
     print()
     print("=" * 72)
     print("RUBRIC SCORING SHEET")
@@ -39,10 +45,19 @@ def print_score_sheet(score_sheet: dict, github_url: str, module_config: dict, v
     print()
     print(f"Audit record on GitHub:")
     print(f"  {github_url}")
+    print("Formatted HTML report:")
+    print(f"  {html_report_url or 'saved as report.html next to the JSON record'}")
     print("=" * 72)
 
 
-def build_record(intake: dict, defense_qa: list, score_sheet: dict, github_url: str) -> dict:
+def build_record(
+    intake: dict,
+    defense_qa: list,
+    score_sheet: dict,
+    github_url: str,
+    html_report_url: str = "",
+    recorded_at: str = "",
+) -> dict:
     return {
         "candidate_name": intake["candidate_name"],
         "domain": intake["domain"],
@@ -60,6 +75,8 @@ def build_record(intake: dict, defense_qa: list, score_sheet: dict, github_url: 
         "pass_b": score_sheet["pass_b"],
         "verdict": score_sheet["verdict"],
         "github_url": github_url,
+        "html_report_url": html_report_url,
+        "recorded_at": recorded_at,
         "mapped_vector_dimensions": mapped_vector_codes(intake["module_config"]),
     }
 
@@ -83,9 +100,25 @@ def run_pipeline(intake: dict | None = None, defense_answers: list[str] | None =
         defense_qa,
     )
     record_without_url = build_record(intake, defense_qa, score_sheet, github_url="")
-    github_url = commit_attempt(record_without_url)
-    record = build_record(intake, defense_qa, score_sheet, github_url)
-    print_score_sheet(score_sheet, github_url, intake["module_config"], vector_config)
+    urls = commit_attempt(record_without_url)
+    github_url = urls["github_url"] if isinstance(urls, dict) else urls
+    html_report_url = urls.get("html_report_url", "") if isinstance(urls, dict) else ""
+    recorded_at = record_without_url.get("recorded_at") or ""
+    record = build_record(
+        intake,
+        defense_qa,
+        score_sheet,
+        github_url,
+        html_report_url=html_report_url,
+        recorded_at=recorded_at,
+    )
+    print_score_sheet(
+        score_sheet,
+        github_url,
+        intake["module_config"],
+        vector_config,
+        html_report_url=html_report_url,
+    )
     return record
 
 

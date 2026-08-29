@@ -1,0 +1,9 @@
+{
+  "framework": "nextjs",
+  "functions": {
+    "app/api/generate/route.ts": { "maxDuration": 60 },
+    "app/api/defense/route.ts": { "maxDuration": 60 },
+    "app/api/score-pass/route.ts": { "maxDuration": 60 },
+    "app/api/finalize/route.ts": { "maxDuration": 60 }
+  }
+}
