@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { postJson } from "@/lib/clientFetch";
 
 export default function ReportPage() {
   const [raw, setRaw] = useState("");
@@ -12,13 +13,8 @@ export default function ReportPage() {
     setBusy(true);
     setError("");
     try {
-      const resp = await fetch("/api/render-report", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(record),
-      });
-      const data = (await resp.json()) as { html?: string; error?: string };
-      if (!resp.ok || !data.html) throw new Error(data.error || "Could not convert that JSON.");
+      const data = await postJson<{ html?: string }>("/api/render-report", record);
+      if (!data.html) throw new Error("Could not convert that JSON.");
       setHtml(data.html);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Could not convert that JSON.");

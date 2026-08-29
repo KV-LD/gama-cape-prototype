@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { postJson } from "@/lib/clientFetch";
 
 type ModuleInfo = {
   id: number;
@@ -32,16 +33,7 @@ const STEPS = [
   { id: 6, label: "Report" },
 ];
 
-async function postJson<T>(url: string, body: unknown): Promise<T> {
-  const resp = await fetch(url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
-  });
-  const data = (await resp.json()) as T & { error?: string };
-  if (!resp.ok) throw new Error(data.error || `Request failed (${resp.status})`);
-  return data;
-}
+import { postJson } from "@/lib/clientFetch";
 
 export default function CapeApp() {
   const [config, setConfig] = useState<ConfigPayload | null>(null);
