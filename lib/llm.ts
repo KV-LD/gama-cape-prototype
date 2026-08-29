@@ -1,17 +1,36 @@
 import { ALLOWED_SCORES, GROK_MODEL, OPENROUTER_CHAT_URL } from "./constants";
 
+function readSecret(name: string): string {
+  // Bracket access so Next.js does not freeze an empty value at build time.
+  let value = (process.env[name] || "").trim();
+  if (
+    (value.startsWith("\"") && value.endsWith("\"")) ||
+    (value.startsWith("'") && value.endsWith("'"))
+  ) {
+    value = value.slice(1, -1).trim();
+  }
+  if (value.toLowerCase().startsWith("bearer ")) {
+    value = value.slice(7).trim();
+  }
+  return value;
+}
+
 export function openrouterKey(): string {
-  const key = (process.env.OPENROUTER_API_KEY || "").trim();
-  if (!key) {
-    throw new Error("OPENROUTER_API_KEY is missing. Add it in Vercel project environment variables.");
+  const key = readSecret("OPENROUTER_API_KEY");
+  if (!key || key === "your_key_here") {
+    throw new Error(
+      "OPENROUTER_API_KEY is missing. In Netlify go to Site configuration → Environment variables, add OPENROUTER_API_KEY, then Trigger deploy.",
+    );
   }
   return key;
 }
 
 export function githubToken(): string {
-  const token = (process.env.GITHUB_TOKEN || "").trim();
-  if (!token) {
-    throw new Error("GITHUB_TOKEN is missing. Add it in Vercel project environment variables.");
+  const token = readSecret("GITHUB_TOKEN");
+  if (!token || token === "your_token_here") {
+    throw new Error(
+      "GITHUB_TOKEN is missing. In Netlify go to Site configuration → Environment variables, add GITHUB_TOKEN, then Trigger deploy.",
+    );
   }
   return token;
 }
