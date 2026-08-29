@@ -89,7 +89,7 @@ If the site 404s or the build log says it cannot find `package.json`, the deploy
 
 ### Timeouts on Netlify
 
-Capstone generation and scoring call Grok and can take 20–60 seconds. Netlify function time limits are often **10 seconds** (free) or **26 seconds** (paid). If **Generate capstone** or scoring fails with a timeout, upgrade the Netlify plan / function timeout, or keep using the Python CLI (`python main.py`) for the long LLM steps. The wizard UI and JSON → HTML report still work on the free tier.
+Capstone generation and scoring call Grok and can take 20–60 seconds. Netlify often stops a function after **10 seconds** (free) or a bit longer on paid plans. If **Generate capstone** or scoring fails with a timeout, keep using the Python CLI (`python main.py`) for those long steps. The wizard UI and JSON → HTML report still work on the free tier.
 
 ### Redeploy after you change code
 
